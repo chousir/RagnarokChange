@@ -11,5 +11,6 @@
   "log_level": 1,
   "should_exit": true,
   "ignore_pause": true,
-  "disable_colors": true
+  "disable_colors": true,
+  "pre_run_script": "res://tests/gut_pre_run.gd"
 }

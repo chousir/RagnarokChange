@@ -1,0 +1,22 @@
+{
+  "map": "kronenberg",
+  "warmup_frames": 120,
+  "settle_frames": 60,
+  "measure_frames": 300,
+  "extra_points": [
+    {
+      "id": "topdown",
+      "position": [
+        0,
+        760,
+        0
+      ],
+      "look_at": [
+        0,
+        0,
+        0
+      ],
+      "fov": 40
+    }
+  ]
+}

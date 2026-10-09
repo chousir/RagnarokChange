@@ -1,0 +1,13 @@
+[gd_resource type="Terrain3DAssets" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/textures/whitebox_ground/whitebox_ground_albedo.png" id="1_xhu70"]
+[ext_resource type="Texture2D" path="res://assets/textures/whitebox_ground/whitebox_ground_normal.png" id="2_fe46a"]
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_mq4yk"]
+name = "whitebox_ground"
+albedo_texture = ExtResource("1_xhu70")
+normal_texture = ExtResource("2_fe46a")
+uv_scale = 0.25
+
+[resource]
+texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_mq4yk")])

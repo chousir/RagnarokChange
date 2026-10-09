@@ -1,3 +1,315 @@
 [gd_scene format=3]
 
-[node name="Logic" type="Node3D"]
+[ext_resource type="Script" path="res://src/shared/map/markers/spawn_point.gd" id="1_5cme7"]
+[ext_resource type="Script" path="res://src/shared/map/markers/warp.gd" id="2_qjion"]
+[ext_resource type="Script" path="res://src/shared/map/markers/safe_zone.gd" id="3_xqsoa"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_00_00.res" id="4_03674"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_01_00.res" id="5_3mdcl"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_02_00.res" id="6_bkwlq"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_03_00.res" id="7_q8vuu"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_04_00.res" id="8_gdq70"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_05_00.res" id="9_lcape"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_06_00.res" id="10_seeqc"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_07_00.res" id="11_y8f08"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_00_01.res" id="12_vy0vl"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_01_01.res" id="13_o61e0"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_02_01.res" id="14_o0gfp"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_03_01.res" id="15_c1llp"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_04_01.res" id="16_gux4o"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_05_01.res" id="17_m70nd"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_06_01.res" id="18_err6h"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_07_01.res" id="19_mftjy"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_00_02.res" id="20_67hel"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_01_02.res" id="21_ftf0f"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_02_02.res" id="22_vro66"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_03_02.res" id="23_pk0rx"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_04_02.res" id="24_avkec"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_05_02.res" id="25_6x50a"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_06_02.res" id="26_c2fqu"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_07_02.res" id="27_6ef53"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_00_03.res" id="28_vyf8a"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_01_03.res" id="29_wksud"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_02_03.res" id="30_gqnhr"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_03_03.res" id="31_223tx"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_04_03.res" id="32_glvl1"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_05_03.res" id="33_vb8qe"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_06_03.res" id="34_sau4r"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_07_03.res" id="35_fcuyp"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_00_04.res" id="36_6gbvc"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_01_04.res" id="37_ip76m"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_02_04.res" id="38_yw1xf"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_03_04.res" id="39_hoojw"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_04_04.res" id="40_m7wkp"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_05_04.res" id="41_cdlyc"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_06_04.res" id="42_0y0e6"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_07_04.res" id="43_uitya"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_00_05.res" id="44_8fhsm"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_01_05.res" id="45_ogpve"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_02_05.res" id="46_01grq"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_03_05.res" id="47_myy8h"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_04_05.res" id="48_5jjws"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_05_05.res" id="49_asc3t"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_06_05.res" id="50_blp1w"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_07_05.res" id="51_8nxns"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_00_06.res" id="52_xcdm0"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_01_06.res" id="53_engeh"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_02_06.res" id="54_152e8"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_03_06.res" id="55_egn5s"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_04_06.res" id="56_c6nxw"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_05_06.res" id="57_xlx8e"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_06_06.res" id="58_b5hur"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_07_06.res" id="59_ht7ri"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_00_07.res" id="60_7ibfn"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_01_07.res" id="61_n0k1j"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_02_07.res" id="62_tp0tn"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_03_07.res" id="63_csvu7"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_04_07.res" id="64_8v8hv"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_05_07.res" id="65_mpi7n"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_06_07.res" id="66_kvdrt"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_07_07.res" id="67_63j6w"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_00_08.res" id="68_i4vx0"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_01_08.res" id="69_ktgi6"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_02_08.res" id="70_2q8ws"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_03_08.res" id="71_m8rnt"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_04_08.res" id="72_5mvhj"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_05_08.res" id="73_bwlxo"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_06_08.res" id="74_enwd5"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg_south_field/navmesh/chunk_07_08.res" id="75_84ctx"]
+
+[node name="Logic" type="Node3D" unique_id=1737298255]
+
+[node name="Markers" type="Node3D" parent="." unique_id=58189771]
+
+[node name="FromKronenberg" type="Marker3D" parent="Markers" unique_id=2129739158]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -0.036323886, -215)
+script = ExtResource("1_5cme7")
+point_id = "from_kronenberg"
+
+[node name="WarpToKronenberg" type="Marker3D" parent="Markers" unique_id=1438268716]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -261)
+script = ExtResource("2_qjion")
+target_map = "kronenberg"
+target_point = "from_south_field"
+
+[node name="SafeZone" type="Marker3D" parent="Markers" unique_id=411730437]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -236)
+script = ExtResource("3_xqsoa")
+size_m = Vector3(30, 20, 30)
+
+[node name="Navigation" type="Node3D" parent="." unique_id=465918837]
+
+[node name="Chunk0000" type="NavigationRegion3D" parent="Navigation" unique_id=1598839626]
+navigation_mesh = ExtResource("4_03674")
+
+[node name="Chunk0100" type="NavigationRegion3D" parent="Navigation" unique_id=725552982]
+navigation_mesh = ExtResource("5_3mdcl")
+
+[node name="Chunk0200" type="NavigationRegion3D" parent="Navigation" unique_id=965144138]
+navigation_mesh = ExtResource("6_bkwlq")
+
+[node name="Chunk0300" type="NavigationRegion3D" parent="Navigation" unique_id=1211932721]
+navigation_mesh = ExtResource("7_q8vuu")
+
+[node name="Chunk0400" type="NavigationRegion3D" parent="Navigation" unique_id=1531916938]
+navigation_mesh = ExtResource("8_gdq70")
+
+[node name="Chunk0500" type="NavigationRegion3D" parent="Navigation" unique_id=281896572]
+navigation_mesh = ExtResource("9_lcape")
+
+[node name="Chunk0600" type="NavigationRegion3D" parent="Navigation" unique_id=118278964]
+navigation_mesh = ExtResource("10_seeqc")
+
+[node name="Chunk0700" type="NavigationRegion3D" parent="Navigation" unique_id=1511896284]
+navigation_mesh = ExtResource("11_y8f08")
+
+[node name="Chunk0001" type="NavigationRegion3D" parent="Navigation" unique_id=889489063]
+navigation_mesh = ExtResource("12_vy0vl")
+
+[node name="Chunk0101" type="NavigationRegion3D" parent="Navigation" unique_id=1193313371]
+navigation_mesh = ExtResource("13_o61e0")
+
+[node name="Chunk0201" type="NavigationRegion3D" parent="Navigation" unique_id=1668464095]
+navigation_mesh = ExtResource("14_o0gfp")
+
+[node name="Chunk0301" type="NavigationRegion3D" parent="Navigation" unique_id=785602969]
+navigation_mesh = ExtResource("15_c1llp")
+
+[node name="Chunk0401" type="NavigationRegion3D" parent="Navigation" unique_id=1308831031]
+navigation_mesh = ExtResource("16_gux4o")
+
+[node name="Chunk0501" type="NavigationRegion3D" parent="Navigation" unique_id=125754841]
+navigation_mesh = ExtResource("17_m70nd")
+
+[node name="Chunk0601" type="NavigationRegion3D" parent="Navigation" unique_id=625039501]
+navigation_mesh = ExtResource("18_err6h")
+
+[node name="Chunk0701" type="NavigationRegion3D" parent="Navigation" unique_id=923184749]
+navigation_mesh = ExtResource("19_mftjy")
+
+[node name="Chunk0002" type="NavigationRegion3D" parent="Navigation" unique_id=758275469]
+navigation_mesh = ExtResource("20_67hel")
+
+[node name="Chunk0102" type="NavigationRegion3D" parent="Navigation" unique_id=260081132]
+navigation_mesh = ExtResource("21_ftf0f")
+
+[node name="Chunk0202" type="NavigationRegion3D" parent="Navigation" unique_id=370134799]
+navigation_mesh = ExtResource("22_vro66")
+
+[node name="Chunk0302" type="NavigationRegion3D" parent="Navigation" unique_id=2081953052]
+navigation_mesh = ExtResource("23_pk0rx")
+
+[node name="Chunk0402" type="NavigationRegion3D" parent="Navigation" unique_id=592840936]
+navigation_mesh = ExtResource("24_avkec")
+
+[node name="Chunk0502" type="NavigationRegion3D" parent="Navigation" unique_id=1288056883]
+navigation_mesh = ExtResource("25_6x50a")
+
+[node name="Chunk0602" type="NavigationRegion3D" parent="Navigation" unique_id=1200101011]
+navigation_mesh = ExtResource("26_c2fqu")
+
+[node name="Chunk0702" type="NavigationRegion3D" parent="Navigation" unique_id=786731665]
+navigation_mesh = ExtResource("27_6ef53")
+
+[node name="Chunk0003" type="NavigationRegion3D" parent="Navigation" unique_id=1222672275]
+navigation_mesh = ExtResource("28_vyf8a")
+
+[node name="Chunk0103" type="NavigationRegion3D" parent="Navigation" unique_id=408009052]
+navigation_mesh = ExtResource("29_wksud")
+
+[node name="Chunk0203" type="NavigationRegion3D" parent="Navigation" unique_id=198929630]
+navigation_mesh = ExtResource("30_gqnhr")
+
+[node name="Chunk0303" type="NavigationRegion3D" parent="Navigation" unique_id=1286615285]
+navigation_mesh = ExtResource("31_223tx")
+
+[node name="Chunk0403" type="NavigationRegion3D" parent="Navigation" unique_id=800947935]
+navigation_mesh = ExtResource("32_glvl1")
+
+[node name="Chunk0503" type="NavigationRegion3D" parent="Navigation" unique_id=35036448]
+navigation_mesh = ExtResource("33_vb8qe")
+
+[node name="Chunk0603" type="NavigationRegion3D" parent="Navigation" unique_id=1233808217]
+navigation_mesh = ExtResource("34_sau4r")
+
+[node name="Chunk0703" type="NavigationRegion3D" parent="Navigation" unique_id=25016219]
+navigation_mesh = ExtResource("35_fcuyp")
+
+[node name="Chunk0004" type="NavigationRegion3D" parent="Navigation" unique_id=1114094844]
+navigation_mesh = ExtResource("36_6gbvc")
+
+[node name="Chunk0104" type="NavigationRegion3D" parent="Navigation" unique_id=1566585554]
+navigation_mesh = ExtResource("37_ip76m")
+
+[node name="Chunk0204" type="NavigationRegion3D" parent="Navigation" unique_id=1661305508]
+navigation_mesh = ExtResource("38_yw1xf")
+
+[node name="Chunk0304" type="NavigationRegion3D" parent="Navigation" unique_id=1607107496]
+navigation_mesh = ExtResource("39_hoojw")
+
+[node name="Chunk0404" type="NavigationRegion3D" parent="Navigation" unique_id=1568409180]
+navigation_mesh = ExtResource("40_m7wkp")
+
+[node name="Chunk0504" type="NavigationRegion3D" parent="Navigation" unique_id=1690997624]
+navigation_mesh = ExtResource("41_cdlyc")
+
+[node name="Chunk0604" type="NavigationRegion3D" parent="Navigation" unique_id=1971223633]
+navigation_mesh = ExtResource("42_0y0e6")
+
+[node name="Chunk0704" type="NavigationRegion3D" parent="Navigation" unique_id=877256590]
+navigation_mesh = ExtResource("43_uitya")
+
+[node name="Chunk0005" type="NavigationRegion3D" parent="Navigation" unique_id=1872561298]
+navigation_mesh = ExtResource("44_8fhsm")
+
+[node name="Chunk0105" type="NavigationRegion3D" parent="Navigation" unique_id=94559085]
+navigation_mesh = ExtResource("45_ogpve")
+
+[node name="Chunk0205" type="NavigationRegion3D" parent="Navigation" unique_id=658349755]
+navigation_mesh = ExtResource("46_01grq")
+
+[node name="Chunk0305" type="NavigationRegion3D" parent="Navigation" unique_id=708598801]
+navigation_mesh = ExtResource("47_myy8h")
+
+[node name="Chunk0405" type="NavigationRegion3D" parent="Navigation" unique_id=1986846767]
+navigation_mesh = ExtResource("48_5jjws")
+
+[node name="Chunk0505" type="NavigationRegion3D" parent="Navigation" unique_id=354202932]
+navigation_mesh = ExtResource("49_asc3t")
+
+[node name="Chunk0605" type="NavigationRegion3D" parent="Navigation" unique_id=526484681]
+navigation_mesh = ExtResource("50_blp1w")
+
+[node name="Chunk0705" type="NavigationRegion3D" parent="Navigation" unique_id=1113407338]
+navigation_mesh = ExtResource("51_8nxns")
+
+[node name="Chunk0006" type="NavigationRegion3D" parent="Navigation" unique_id=635945330]
+navigation_mesh = ExtResource("52_xcdm0")
+
+[node name="Chunk0106" type="NavigationRegion3D" parent="Navigation" unique_id=1442488739]
+navigation_mesh = ExtResource("53_engeh")
+
+[node name="Chunk0206" type="NavigationRegion3D" parent="Navigation" unique_id=1570011786]
+navigation_mesh = ExtResource("54_152e8")
+
+[node name="Chunk0306" type="NavigationRegion3D" parent="Navigation" unique_id=45473748]
+navigation_mesh = ExtResource("55_egn5s")
+
+[node name="Chunk0406" type="NavigationRegion3D" parent="Navigation" unique_id=1350496468]
+navigation_mesh = ExtResource("56_c6nxw")
+
+[node name="Chunk0506" type="NavigationRegion3D" parent="Navigation" unique_id=1810018238]
+navigation_mesh = ExtResource("57_xlx8e")
+
+[node name="Chunk0606" type="NavigationRegion3D" parent="Navigation" unique_id=146114448]
+navigation_mesh = ExtResource("58_b5hur")
+
+[node name="Chunk0706" type="NavigationRegion3D" parent="Navigation" unique_id=2001238529]
+navigation_mesh = ExtResource("59_ht7ri")
+
+[node name="Chunk0007" type="NavigationRegion3D" parent="Navigation" unique_id=1393886182]
+navigation_mesh = ExtResource("60_7ibfn")
+
+[node name="Chunk0107" type="NavigationRegion3D" parent="Navigation" unique_id=299947745]
+navigation_mesh = ExtResource("61_n0k1j")
+
+[node name="Chunk0207" type="NavigationRegion3D" parent="Navigation" unique_id=1438562979]
+navigation_mesh = ExtResource("62_tp0tn")
+
+[node name="Chunk0307" type="NavigationRegion3D" parent="Navigation" unique_id=288757585]
+navigation_mesh = ExtResource("63_csvu7")
+
+[node name="Chunk0407" type="NavigationRegion3D" parent="Navigation" unique_id=990410766]
+navigation_mesh = ExtResource("64_8v8hv")
+
+[node name="Chunk0507" type="NavigationRegion3D" parent="Navigation" unique_id=300617424]
+navigation_mesh = ExtResource("65_mpi7n")
+
+[node name="Chunk0607" type="NavigationRegion3D" parent="Navigation" unique_id=366958557]
+navigation_mesh = ExtResource("66_kvdrt")
+
+[node name="Chunk0707" type="NavigationRegion3D" parent="Navigation" unique_id=372577206]
+navigation_mesh = ExtResource("67_63j6w")
+
+[node name="Chunk0008" type="NavigationRegion3D" parent="Navigation" unique_id=580439969]
+navigation_mesh = ExtResource("68_i4vx0")
+
+[node name="Chunk0108" type="NavigationRegion3D" parent="Navigation" unique_id=2084748093]
+navigation_mesh = ExtResource("69_ktgi6")
+
+[node name="Chunk0208" type="NavigationRegion3D" parent="Navigation" unique_id=404899145]
+navigation_mesh = ExtResource("70_2q8ws")
+
+[node name="Chunk0308" type="NavigationRegion3D" parent="Navigation" unique_id=16773496]
+navigation_mesh = ExtResource("71_m8rnt")
+
+[node name="Chunk0408" type="NavigationRegion3D" parent="Navigation" unique_id=1632513568]
+navigation_mesh = ExtResource("72_5mvhj")
+
+[node name="Chunk0508" type="NavigationRegion3D" parent="Navigation" unique_id=393704962]
+navigation_mesh = ExtResource("73_bwlxo")
+
+[node name="Chunk0608" type="NavigationRegion3D" parent="Navigation" unique_id=1848148539]
+navigation_mesh = ExtResource("74_enwd5")
+
+[node name="Chunk0708" type="NavigationRegion3D" parent="Navigation" unique_id=1965285485]
+navigation_mesh = ExtResource("75_84ctx")

@@ -47,6 +47,11 @@ func _run() -> void:
 	get_window().size = Vector2i(WIDTH, HEIGHT)
 	PerfProbe.enable_gpu_timing(get_viewport())
 
+	# The camera comes first: Terrain3D looks for it as soon as it enters the tree.
+	_camera = Camera3D.new()
+	_camera.far = 2000.0
+	add_child(_camera)
+	_camera.make_current()
 	var load_started: int = Time.get_ticks_usec()
 	var scene: PackedScene = load(_scene_path(config))
 	if scene == null:
@@ -55,10 +60,8 @@ func _run() -> void:
 	var world: Node = scene.instantiate()
 	add_child(world)
 	var load_ms: float = (Time.get_ticks_usec() - load_started) / 1000.0
-	_camera = Camera3D.new()
-	add_child(_camera)
-	_camera.make_current()
 
+	_add_extra_points(world, config)
 	var points: Array[ObservationPoint] = []
 	_find_points(world, points)
 	if points.is_empty():
@@ -114,6 +117,32 @@ func _measure_point(point: ObservationPoint, settle_frames: int, measure_frames:
 		point.point_id, summary["frame_ms_avg"], summary["frame_ms_1pct_low"], summary["gpu_ms_avg"], summary["draw_calls_max"], summary["primitives_max"],
 	])
 	return summary
+
+
+## Points listed in the shot script itself, for views a map does not define,
+## such as straight down: {"id", "position": [x, y, z], "look_at": [x, y, z], "fov"}.
+func _add_extra_points(world: Node, config: Dictionary) -> void:
+	var extras: Array = config.get("extra_points", [])
+	for item: Variant in extras:
+		var spec: Dictionary = item
+		var position: Vector3 = _vector(spec.get("position", [0, 10, 0]))
+		var target: Vector3 = _vector(spec.get("look_at", [0, 0, 0]))
+		var point: ObservationPoint = ObservationPoint.new()
+		point.point_id = str(spec.get("id", "extra"))
+		var fov: float = spec.get("fov", 60.0)
+		point.fov_deg = fov
+		# Looking straight down, north (-Z) is the top of the picture.
+		var up: Vector3 = Vector3.FORWARD if absf((target - position).normalized().y) > 0.99 else Vector3.UP
+		point.transform = Transform3D(Basis.IDENTITY, position).looking_at(target, up)
+		world.add_child(point)
+
+
+static func _vector(value: Variant) -> Vector3:
+	var numbers: Array = value
+	var x: float = numbers[0]
+	var y: float = numbers[1]
+	var z: float = numbers[2]
+	return Vector3(x, y, z)
 
 
 func _place_camera(point: ObservationPoint) -> void:

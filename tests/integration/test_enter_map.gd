@@ -24,6 +24,7 @@ func before_each() -> void:
 
 
 func after_each() -> void:
+	_server.shutdown()
 	_clients.clear()
 	_hub.close()
 	Log.end_capture()

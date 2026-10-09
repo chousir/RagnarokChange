@@ -1,9 +1,143 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://src/shared/map/markers/spawn_point.gd" id="1_spawn"]
+[ext_resource type="Script" path="res://src/shared/map/markers/spawn_point.gd" id="1_xta5i"]
+[ext_resource type="Script" path="res://src/shared/map/markers/warp.gd" id="2_uysdr"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg/navmesh/chunk_00_00.res" id="3_0sjeu"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg/navmesh/chunk_01_00.res" id="4_gr1xb"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg/navmesh/chunk_02_00.res" id="5_b7pgg"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg/navmesh/chunk_03_00.res" id="6_e0ik3"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg/navmesh/chunk_00_01.res" id="7_6t7ni"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg/navmesh/chunk_01_01.res" id="8_jxatf"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg/navmesh/chunk_02_01.res" id="9_n8378"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg/navmesh/chunk_03_01.res" id="10_g7mya"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg/navmesh/chunk_04_01.res" id="11_o6oi5"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg/navmesh/chunk_05_01.res" id="12_vthpy"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg/navmesh/chunk_00_02.res" id="13_vnow3"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg/navmesh/chunk_01_02.res" id="14_q5dgy"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg/navmesh/chunk_02_02.res" id="15_lwsur"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg/navmesh/chunk_03_02.res" id="16_vgosk"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg/navmesh/chunk_04_02.res" id="17_n4px4"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg/navmesh/chunk_05_02.res" id="18_uirab"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg/navmesh/chunk_00_03.res" id="19_56gvx"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg/navmesh/chunk_01_03.res" id="20_6nckm"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg/navmesh/chunk_02_03.res" id="21_35l6w"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg/navmesh/chunk_03_03.res" id="22_setlo"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg/navmesh/chunk_04_03.res" id="23_li6pa"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg/navmesh/chunk_05_03.res" id="24_7brri"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg/navmesh/chunk_00_04.res" id="25_dpvir"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg/navmesh/chunk_01_04.res" id="26_vtktx"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg/navmesh/chunk_02_04.res" id="27_ung3o"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg/navmesh/chunk_03_04.res" id="28_ncpxf"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg/navmesh/chunk_04_04.res" id="29_3db2l"]
+[ext_resource type="NavigationMesh" path="res://maps/kronenberg/navmesh/chunk_05_04.res" id="30_r1xn8"]
 
-[node name="Logic" type="Node3D"]
+[node name="Logic" type="Node3D" unique_id=176895815]
 
-[node name="Start" type="Marker3D" parent="."]
-script = ExtResource("1_spawn")
+[node name="Markers" type="Node3D" parent="." unique_id=1569180817]
+
+[node name="Start" type="Marker3D" parent="Markers" unique_id=157800728]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+script = ExtResource("1_xta5i")
 point_id = "start"
+
+[node name="SaveDefault" type="Marker3D" parent="Markers" unique_id=1103301589]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -12)
+script = ExtResource("1_xta5i")
+point_id = "save_default"
+
+[node name="FromSouthField" type="Marker3D" parent="Markers" unique_id=1710866500]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 138)
+script = ExtResource("1_xta5i")
+point_id = "from_south_field"
+
+[node name="WarpToKronenbergSouthField" type="Marker3D" parent="Markers" unique_id=340132737]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 152)
+script = ExtResource("2_uysdr")
+target_map = "kronenberg_south_field"
+target_point = "from_kronenberg"
+
+[node name="Navigation" type="Node3D" parent="." unique_id=454954110]
+
+[node name="Chunk0000" type="NavigationRegion3D" parent="Navigation" unique_id=1475723506]
+navigation_mesh = ExtResource("3_0sjeu")
+
+[node name="Chunk0100" type="NavigationRegion3D" parent="Navigation" unique_id=390060749]
+navigation_mesh = ExtResource("4_gr1xb")
+
+[node name="Chunk0200" type="NavigationRegion3D" parent="Navigation" unique_id=1673605020]
+navigation_mesh = ExtResource("5_b7pgg")
+
+[node name="Chunk0300" type="NavigationRegion3D" parent="Navigation" unique_id=69049242]
+navigation_mesh = ExtResource("6_e0ik3")
+
+[node name="Chunk0001" type="NavigationRegion3D" parent="Navigation" unique_id=630647419]
+navigation_mesh = ExtResource("7_6t7ni")
+
+[node name="Chunk0101" type="NavigationRegion3D" parent="Navigation" unique_id=115648693]
+navigation_mesh = ExtResource("8_jxatf")
+
+[node name="Chunk0201" type="NavigationRegion3D" parent="Navigation" unique_id=792803664]
+navigation_mesh = ExtResource("9_n8378")
+
+[node name="Chunk0301" type="NavigationRegion3D" parent="Navigation" unique_id=1368640116]
+navigation_mesh = ExtResource("10_g7mya")
+
+[node name="Chunk0401" type="NavigationRegion3D" parent="Navigation" unique_id=774769192]
+navigation_mesh = ExtResource("11_o6oi5")
+
+[node name="Chunk0501" type="NavigationRegion3D" parent="Navigation" unique_id=267170502]
+navigation_mesh = ExtResource("12_vthpy")
+
+[node name="Chunk0002" type="NavigationRegion3D" parent="Navigation" unique_id=2039886273]
+navigation_mesh = ExtResource("13_vnow3")
+
+[node name="Chunk0102" type="NavigationRegion3D" parent="Navigation" unique_id=1169727370]
+navigation_mesh = ExtResource("14_q5dgy")
+
+[node name="Chunk0202" type="NavigationRegion3D" parent="Navigation" unique_id=1406772349]
+navigation_mesh = ExtResource("15_lwsur")
+
+[node name="Chunk0302" type="NavigationRegion3D" parent="Navigation" unique_id=837868163]
+navigation_mesh = ExtResource("16_vgosk")
+
+[node name="Chunk0402" type="NavigationRegion3D" parent="Navigation" unique_id=424198508]
+navigation_mesh = ExtResource("17_n4px4")
+
+[node name="Chunk0502" type="NavigationRegion3D" parent="Navigation" unique_id=710990026]
+navigation_mesh = ExtResource("18_uirab")
+
+[node name="Chunk0003" type="NavigationRegion3D" parent="Navigation" unique_id=1181516821]
+navigation_mesh = ExtResource("19_56gvx")
+
+[node name="Chunk0103" type="NavigationRegion3D" parent="Navigation" unique_id=1782073969]
+navigation_mesh = ExtResource("20_6nckm")
+
+[node name="Chunk0203" type="NavigationRegion3D" parent="Navigation" unique_id=1774585813]
+navigation_mesh = ExtResource("21_35l6w")
+
+[node name="Chunk0303" type="NavigationRegion3D" parent="Navigation" unique_id=531701049]
+navigation_mesh = ExtResource("22_setlo")
+
+[node name="Chunk0403" type="NavigationRegion3D" parent="Navigation" unique_id=711070566]
+navigation_mesh = ExtResource("23_li6pa")
+
+[node name="Chunk0503" type="NavigationRegion3D" parent="Navigation" unique_id=1709034384]
+navigation_mesh = ExtResource("24_7brri")
+
+[node name="Chunk0004" type="NavigationRegion3D" parent="Navigation" unique_id=347386783]
+navigation_mesh = ExtResource("25_dpvir")
+
+[node name="Chunk0104" type="NavigationRegion3D" parent="Navigation" unique_id=1715936717]
+navigation_mesh = ExtResource("26_vtktx")
+
+[node name="Chunk0204" type="NavigationRegion3D" parent="Navigation" unique_id=2077779201]
+navigation_mesh = ExtResource("27_ung3o")
+
+[node name="Chunk0304" type="NavigationRegion3D" parent="Navigation" unique_id=1874493213]
+navigation_mesh = ExtResource("28_ncpxf")
+
+[node name="Chunk0404" type="NavigationRegion3D" parent="Navigation" unique_id=541334869]
+navigation_mesh = ExtResource("29_3db2l")
+
+[node name="Chunk0504" type="NavigationRegion3D" parent="Navigation" unique_id=264663482]
+navigation_mesh = ExtResource("30_r1xn8")

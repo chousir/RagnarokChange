@@ -4,18 +4,24 @@ Imports all resources and runs every headless test (unit, integration, smoke, gu
 
 .DESCRIPTION
 Run before every commit (docs/01-architecture.md section 11.2, docs/11-milestones.md 11-D08).
-Any engine or script error in the output fails the check (docs/01-architecture.md 01-D16).
+Any engine or script error in the output fails the check (docs/01-architecture.md 01-D16),
+and so does a run that does not finish in time.
 Logs go to artifacts/check/. Exit code 0 means everything passed.
 
 .PARAMETER Godot
 Path to the Godot 4.7.2 console executable. Defaults to $env:GODOT_BIN, then D:\godot.
+
+.PARAMETER TimeoutSeconds
+Longest each Godot run may take. Defaults to 900.
 #>
 [CmdletBinding()]
 param(
-    [string]$Godot = $env:GODOT_BIN
+    [string]$Godot = '',
+    [int]$TimeoutSeconds = 900
 )
 
 $ErrorActionPreference = 'Stop'
+. (Join-Path $PSScriptRoot 'godot_run.ps1')
 $projectRoot = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
 $artifactsDir = Join-Path $projectRoot 'artifacts'
 $logDir = Join-Path $artifactsDir 'check'
@@ -24,72 +30,23 @@ $artifactsIgnore = Join-Path $artifactsDir '.gdignore'
 if (-not (Test-Path $artifactsIgnore)) {
     New-Item -ItemType File -Path $artifactsIgnore | Out-Null
 }
-
-if (-not $Godot) {
-    $defaultGodot = 'D:\godot\Godot_v4.7.2-stable_win64_console.exe'
-    if (Test-Path $defaultGodot) {
-        $Godot = $defaultGodot
-    } else {
-        $Godot = 'godot'
-    }
-}
-
-# Editor plugins (Terrain3D 1.0.2) leak a dock at exit when the editor imports
-# headless. Only these exit-time leak reports are tolerated, and only while
-# importing; they are shown as warnings.
-$importExitLeaks = @(
-    '^\s*ERROR: \d+ RID allocations of type .+ were leaked at exit\.$',
-    '^\s*ERROR: \d+ resources still in use at exit'
-)
-
-function Invoke-GodotStep {
-    param(
-        [string]$Name,
-        [string[]]$Arguments,
-        [string[]]$Tolerated = @()
-    )
-    Write-Host "== $Name =="
-    $previousPreference = $ErrorActionPreference
-    $ErrorActionPreference = 'Continue'
-    $output = @(& $Godot @Arguments 2>&1 | ForEach-Object { "$_" })
-    $exitCode = $LASTEXITCODE
-    $ErrorActionPreference = $previousPreference
-
-    $output | Set-Content -Path (Join-Path $logDir "$Name.log") -Encoding UTF8
-    $errorLines = @()
-    foreach ($line in @($output | Where-Object { $_ -match '^\s*(SCRIPT ERROR|USER ERROR|ERROR):' })) {
-        $known = $false
-        foreach ($pattern in $Tolerated) {
-            if ($line -match $pattern) { $known = $true }
-        }
-        if ($known) {
-            Write-Host "  (tolerated) $line"
-        } else {
-            $errorLines += $line
-            Write-Host "  $line"
-        }
-    }
-    return [pscustomobject]@{
-        Name = $Name
-        ExitCode = $exitCode
-        ErrorCount = $errorLines.Count
-        Output = $output
-    }
-}
-
+$Godot = Resolve-Godot $Godot
 $failures = @()
 
-$import = Invoke-GodotStep -Name 'import' -Arguments @('--headless', '--path', $projectRoot, '--import') -Tolerated $importExitLeaks
-if ($import.ExitCode -ne 0) { $failures += "import exited with code $($import.ExitCode)" }
-if ($import.ErrorCount -gt 0) { $failures += "import printed $($import.ErrorCount) error line(s)" }
+Write-Host '== import =='
+$import = Invoke-Godot -Godot $Godot -Arguments @('--headless', '--path', $projectRoot, '--import') -LogPath (Join-Path $logDir 'import.log') -TimeoutSeconds $TimeoutSeconds -Tolerated $ImportExitLeaks
+if ($import.TimedOut) { $failures += "import did not finish in $TimeoutSeconds s" }
+elseif ($import.ExitCode -ne 0) { $failures += "import exited with code $($import.ExitCode)" }
+if ($import.Errors.Count -gt 0) { $failures += "import printed $($import.Errors.Count) error line(s)" }
 
-$tests = Invoke-GodotStep -Name 'tests' -Arguments @('--headless', '--path', $projectRoot, '-s', 'res://addons/gut/gut_cmdln.gd')
-$summary = @($tests.Output | Where-Object { $_ -match '^\s*(Scripts|Tests|Passing Tests|Failing Tests|Pending|Asserts|Time)\b' })
-foreach ($line in $summary) {
+Write-Host '== tests =='
+$tests = Invoke-Godot -Godot $Godot -Arguments @('--headless', '--path', $projectRoot, '-s', 'res://addons/gut/gut_cmdln.gd') -LogPath (Join-Path $logDir 'tests.log') -TimeoutSeconds $TimeoutSeconds
+foreach ($line in @($tests.Output | Where-Object { $_ -match '^\s*(Scripts|Tests|Passing Tests|Failing Tests|Pending|Asserts|Time)\b' })) {
     Write-Host "  $line"
 }
-if ($tests.ExitCode -ne 0) { $failures += "tests exited with code $($tests.ExitCode)" }
-if ($tests.ErrorCount -gt 0) { $failures += "tests printed $($tests.ErrorCount) error line(s)" }
+if ($tests.TimedOut) { $failures += "tests did not finish in $TimeoutSeconds s" }
+elseif ($tests.ExitCode -ne 0) { $failures += "tests exited with code $($tests.ExitCode)" }
+if ($tests.Errors.Count -gt 0) { $failures += "tests printed $($tests.Errors.Count) error line(s)" }
 if (-not ($tests.Output | Where-Object { $_ -match 'All tests passed' })) {
     $failures += 'test run did not report "All tests passed"'
 }

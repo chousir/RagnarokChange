@@ -1,12 +1,14 @@
 class_name MapInstance
 extends RefCounted
 ## One loaded map on the server (docs/01-architecture.md section 7.2): its data
-## entry, the markers from its logic scene and the entities on it. The
-## navigation map, spatial grid and random generators come with M1.
+## entry, the markers and navigation mesh from its logic scene, its own
+## navigation map, and the entities on it. The spatial grid and random
+## generators come with the systems that use them.
 
 var map_id: String = ""
 var definition: DataEntry = null
 var logic: MapLogic = null
+var navigation: MapNavigation = null
 ## entity id -> ServerEntity
 var entities: Dictionary = {}
 
@@ -16,7 +18,16 @@ static func load_map(map_id: String, catalog: DataCatalog) -> MapInstance:
 	instance.map_id = map_id
 	instance.definition = catalog.get_entry("maps", map_id)
 	instance.logic = MapLogic.read(map_id)
+	if instance.logic.errors.is_empty():
+		instance.navigation = MapNavigation.build(instance.logic)
 	return instance
+
+
+## Frees the navigation map; call when the map unloads.
+func release() -> void:
+	if navigation != null:
+		navigation.release()
+		navigation = null
 
 
 func errors() -> PackedStringArray:

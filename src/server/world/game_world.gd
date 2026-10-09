@@ -22,6 +22,7 @@ func get_or_load(map_id: String) -> MapInstance:
 	var instance: MapInstance = MapInstance.load_map(map_id, catalog)
 	var problems: PackedStringArray = instance.errors()
 	if not problems.is_empty():
+		instance.release()
 		for problem: String in problems:
 			Log.error("SV", "map", problem)
 		return null
@@ -35,4 +36,13 @@ func unload_empty() -> void:
 		var instance: MapInstance = maps[map_id]
 		if instance.players().is_empty():
 			maps.erase(map_id)
+			instance.release()
 			Log.info("SV", "map", "unloaded %s" % map_id)
+
+
+## Frees every map's navigation; call when the server stops.
+func release_all() -> void:
+	for map_id: String in maps:
+		var instance: MapInstance = maps[map_id]
+		instance.release()
+	maps.clear()

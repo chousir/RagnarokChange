@@ -32,7 +32,7 @@ var _waiting_for_map: bool = false
 
 func setup(client_transport: Transport, client_clock: GameClock, data: DataCatalog, account: String, password: String) -> void:
 	catalog = data
-	connection = ClientConnection.new(client_transport, client_clock, data.data_hash)
+	connection = ClientConnection.new(client_transport, client_clock, WorldHash.compute(data))
 	connection.account = account
 	connection.password = password
 	connection.characters_received.connect(_on_characters_received)

@@ -42,7 +42,8 @@ func _init(server_transport: Transport, server_clock: GameClock, data: DataCatal
 	catalog = data
 	accounts = account_store
 	world = GameWorld.new(data)
-	connections = ServerConnections.new(server_transport, server_clock, data.data_hash)
+	# The handshake compares data and map logic (docs/02 section 4.3).
+	connections = ServerConnections.new(server_transport, server_clock, WorldHash.compute(data))
 	connections.tick_rate = tick_rate
 	connections.snapshot_rate = tick_rate
 	connections.login_requested.connect(_on_login_requested)
@@ -112,6 +113,7 @@ func shutdown() -> void:
 		accounts.save_character(entity.record)
 		connections.kick(peer_id, TransportEvent.Reason.SHUTDOWN)
 	scheduler.clear()
+	world.release_all()
 	accounts.close()
 	Log.info(SIDE, "server", "shut down after %d ticks" % tick)
 

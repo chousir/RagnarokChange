@@ -28,27 +28,19 @@ param(
     [ValidateSet('', 'd3d12', 'vulkan')][string]$Driver = '',
     [string]$Label = '',
     [switch]$ColdCache,
-    [string]$Godot = $env:GODOT_BIN
+    [string]$Godot = ''
 )
 
 $ErrorActionPreference = 'Stop'
+. (Join-Path $PSScriptRoot 'godot_run.ps1')
 $projectRoot = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
 $artifactsDir = Join-Path $projectRoot 'artifacts'
 $logDir = Join-Path $artifactsDir (Join-Path 'shots' $Script)
 New-Item -ItemType Directory -Force -Path $logDir | Out-Null
-$artifactsIgnore = Join-Path $artifactsDir '.gdignore'
-if (-not (Test-Path $artifactsIgnore)) {
-    New-Item -ItemType File -Path $artifactsIgnore | Out-Null
+if (-not (Test-Path (Join-Path $artifactsDir '.gdignore'))) {
+    New-Item -ItemType File -Path (Join-Path $artifactsDir '.gdignore') | Out-Null
 }
-
-if (-not $Godot) {
-    $defaultGodot = 'D:\godot\Godot_v4.7.2-stable_win64_console.exe'
-    if (Test-Path $defaultGodot) {
-        $Godot = $defaultGodot
-    } else {
-        $Godot = 'godot'
-    }
-}
+$Godot = Resolve-Godot $Godot
 
 if ($ColdCache) {
     $caches = @(
@@ -78,32 +70,23 @@ if ($Label) {
 $name = if ($Driver) { $Driver } else { 'default' }
 if ($Label) { $name = "$name`_$Label" }
 Write-Host "== shots $Script ($name) =="
-$previousPreference = $ErrorActionPreference
-$ErrorActionPreference = 'Continue'
-$output = @(& $Godot @arguments 2>&1 | ForEach-Object { "$_" })
-$exitCode = $LASTEXITCODE
-$ErrorActionPreference = $previousPreference
-$logPath = Join-Path $logDir "$name.log"
-$output | Set-Content -Path $logPath -Encoding UTF8
+$run = Invoke-Godot -Godot $Godot -Arguments $arguments -LogPath (Join-Path $logDir "$name.log") -TimeoutSeconds 600
+foreach ($line in @($run.Output | Where-Object { $_ -match '\[shots\]' })) {
+    Write-Host "  $line"
+}
 
 $failures = @()
-$errorLines = @($output | Where-Object { $_ -match '^\s*(SCRIPT ERROR|USER ERROR|ERROR):' })
-foreach ($line in $errorLines) {
-    Write-Host "  $line"
-}
-foreach ($line in @($output | Where-Object { $_ -match '\[shots\]' })) {
-    Write-Host "  $line"
-}
-if ($exitCode -ne 0) { $failures += "exited with code $exitCode" }
-if ($errorLines.Count -gt 0) { $failures += "printed $($errorLines.Count) error line(s)" }
-if (-not ($output | Where-Object { $_ -match '\[shots\] INFO done:' })) { $failures += 'the run did not finish' }
+if ($run.TimedOut) { $failures += 'the run did not finish in time' }
+elseif ($run.ExitCode -ne 0) { $failures += "exited with code $($run.ExitCode)" }
+if ($run.Errors.Count -gt 0) { $failures += "printed $($run.Errors.Count) error line(s)" }
+if (-not ($run.Output | Where-Object { $_ -match '\[shots\] INFO done:' })) { $failures += 'the run did not finish' }
 
 if ($failures.Count -gt 0) {
     Write-Host 'shots: FAIL'
     foreach ($failure in $failures) {
         Write-Host "  - $failure"
     }
-    Write-Host "Log: $logPath"
+    Write-Host "Log: $(Join-Path $logDir "$name.log")"
     exit 1
 }
 

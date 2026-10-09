@@ -43,6 +43,12 @@ window/size/viewport_height=1080
 
 enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
 
+[navigation]
+
+3d/default_cell_size=0.2
+3d/default_cell_height=0.05
+3d/merge_rasterizer_cell_scale=0.01
+
 [rendering]
 
 renderer/rendering_method="forward_plus"
