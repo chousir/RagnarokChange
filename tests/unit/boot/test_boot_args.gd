@@ -20,6 +20,7 @@ func test_modes_and_options_are_read() -> void:
 	assert_eq(connect.connect_address, "192.168.1.5:7777")
 	assert_eq(BootArgs.parse(PackedStringArray(["--netsim=bad"])).netsim, "bad")
 	assert_eq(BootArgs.parse(PackedStringArray(["--viewer"])).mode, BootArgs.Mode.VIEWER)
+	assert_eq(BootArgs.parse(PackedStringArray(["--data-dir=C:/tmp/run"])).data_dir, "C:/tmp/run")
 
 
 func test_dedicated_build_starts_the_server() -> void:
@@ -34,6 +35,7 @@ func test_mistakes_are_reported() -> void:
 		"--run-seconds=soon": "positive number",
 		"--shots": "needs a script name",
 		"--connect": "needs host:port",
+		"--data-dir": "needs a folder",
 	}
 	for argument: String in cases:
 		var args: BootArgs = BootArgs.parse(PackedStringArray([argument]))

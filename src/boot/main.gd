@@ -6,6 +6,7 @@ extends Node
 const SIDE := ""
 ## Frame cap when nothing is drawn, so a headless run does not spin a core.
 const HEADLESS_MAX_FPS := 120
+const USER_FOLDER := "user://"
 
 var _single_player: SinglePlayer = null
 var _quit_at_ms: int = -1
@@ -54,6 +55,20 @@ func _notification(what: int) -> void:
 
 
 func _start_single_player(args: BootArgs) -> void:
+	var folder: String = args.data_dir if not args.data_dir.is_empty() else USER_FOLDER
+	var server_settings: ServerSettings = ServerSettings.load_from(folder.path_join("server.cfg"), ServerSettings.process_environment())
+	if not server_settings.errors.is_empty():
+		for problem: String in server_settings.errors:
+			Log.error(SIDE, "boot", problem)
+		_quit(3)
+		return
+	var level: int = Log.Level.get(server_settings.get_text("log_level"), Log.Level.INFO)
+	Log.min_level = level as Log.Level
+	Log.info(SIDE, "boot", "server settings: %s" % server_settings.describe())
+	var client_settings: ClientSettings = ClientSettings.load_from(folder.path_join("settings.cfg"))
+	for warning: String in client_settings.warnings:
+		Log.warn(SIDE, "settings", warning)
+	InputActions.apply(client_settings.bindings)
 	var locale: LocaleCatalog = LocaleCatalog.new()
 	if not locale.load_from_dir("res://locale", GameData.catalog):
 		for problem: String in locale.errors:
@@ -63,7 +78,12 @@ func _start_single_player(args: BootArgs) -> void:
 	locale.register()
 	_single_player = SinglePlayer.new()
 	var character_name: String = locale.display.get(SinglePlayer.DEFAULT_NAME_KEY, "Adventurer")
-	_single_player.start(self, GameData.catalog, SystemClock.new(), NetSimProfile.named(args.netsim), character_name)
+	var start_problem: String = _single_player.start(self, GameData.catalog, SystemClock.new(), NetSimProfile.named(args.netsim), character_name, server_settings, folder.path_join("saves"))
+	if not start_problem.is_empty():
+		Log.error(SIDE, "boot", start_problem)
+		_single_player = null
+		_quit(4)
+		return
 	Log.info(SIDE, "boot", "single-player started (netsim %s)" % args.netsim)
 
 

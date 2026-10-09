@@ -18,6 +18,8 @@ var face_shapes: Dictionary = {}
 var map: String = ""
 var position: Vector3 = Vector3.ZERO
 var facing_deg: float = 0.0
+## Changed since the last save; autosave writes only these (02-D17).
+var dirty: bool = false
 
 
 ## A new character with the defaults in data/rules new_character, standing on

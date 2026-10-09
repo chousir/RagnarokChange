@@ -19,3 +19,8 @@ extends RefCounted
 
 ## Stores the character's current state.
 @abstract func save_character(record: CharacterRecord) -> bool
+
+
+## Finishes pending writes; the server calls it when it shuts down.
+func close() -> void:
+	pass

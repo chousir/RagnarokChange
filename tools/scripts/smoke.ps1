@@ -39,9 +39,16 @@ if (-not $Godot) {
     }
 }
 
+# Saves and settings go to a fresh folder, never the player's own (docs/03 section 9.1).
+$dataDir = Join-Path $logDir 'data'
+if (Test-Path $dataDir) {
+    Remove-Item -Recurse -Force $dataDir
+}
+New-Item -ItemType Directory -Force -Path $dataDir | Out-Null
+
 Write-Host "== single-player for $Seconds s =="
 # "++" marks the user arguments; PowerShell may swallow a bare "--".
-$arguments = @('--headless', '--path', $projectRoot, '++', "--run-seconds=$Seconds")
+$arguments = @('--headless', '--path', $projectRoot, '++', "--run-seconds=$Seconds", "--data-dir=$dataDir")
 $previousPreference = $ErrorActionPreference
 $ErrorActionPreference = 'Continue'
 $output = @(& $Godot @arguments 2>&1 | ForEach-Object { "$_" })

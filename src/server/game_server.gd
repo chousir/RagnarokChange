@@ -16,6 +16,10 @@ var connections: ServerConnections
 var world: GameWorld
 var scheduler: Scheduler = Scheduler.new()
 var tick_rate: int = 30
+## Snapshots go out every this many ticks (snapshot rate 30 or 15, 02 section 13.3).
+var snapshot_every: int = 1
+## Autosave checks each player this often; only changed characters are written (02-D17).
+var autosave_ms: int = 60000
 var tick: int = 0
 ## Server time of the tick being run; events and snapshots use it.
 var tick_time_ms: int = 0
@@ -48,6 +52,16 @@ func _init(server_transport: Transport, server_clock: GameClock, data: DataCatal
 	_next_tick_ms = clock.now_ms()
 
 
+## Takes the values from server.cfg and the environment (03 section 9.3).
+func configure(settings: ServerSettings) -> void:
+	tick_rate = settings.get_int("tick_rate")
+	snapshot_every = maxi(tick_rate / settings.get_int("snapshot_rate"), 1)
+	autosave_ms = settings.get_int("autosave_sec") * 1000
+	connections.tick_rate = tick_rate
+	connections.snapshot_rate = settings.get_int("snapshot_rate")
+	connections.max_players = settings.get_int("max_players")
+
+
 ## Runs every tick that is due by the clock. Returns how many ran.
 func advance() -> int:
 	var now: int = clock.now_ms()
@@ -74,7 +88,8 @@ func run_tick() -> void:
 	connections.tick = tick
 	connections.process()
 	scheduler.run_due(tick_time_ms)
-	_send_snapshots()
+	if tick % snapshot_every == 0:
+		_send_snapshots()
 	last_tick_usec = Time.get_ticks_usec() - started
 	max_tick_usec = maxi(max_tick_usec, last_tick_usec)
 
@@ -97,6 +112,7 @@ func shutdown() -> void:
 		accounts.save_character(entity.record)
 		connections.kick(peer_id, TransportEvent.Reason.SHUTDOWN)
 	scheduler.clear()
+	accounts.close()
 	Log.info(SIDE, "server", "shut down after %d ticks" % tick)
 
 
@@ -175,6 +191,12 @@ func _on_map_loaded(peer_id: int, map_index: int) -> void:
 	var map: MapInstance = world.get_or_load(entity.pending_map_id)
 	entity.pending_map_id = ""
 	map.add(entity)
+	if entity.entered_world:
+		# A map change saves once (02 section 12.2).
+		_save(entity)
+	else:
+		entity.entered_world = true
+		_schedule_autosave(entity, tick_time_ms + autosave_ms)
 	for other: ServerEntity in map.visible_to(entity):
 		connections.send(peer_id, _appear_message(other, Protocol.AppearReason.IN_PLACE))
 		if other.kind == Protocol.EntityKind.PLAYER:
@@ -199,6 +221,27 @@ func _on_session_closed(peer_id: int, _reason: TransportEvent.Reason) -> void:
 		for other: ServerEntity in map.players():
 			connections.send(other.peer_id, ProtocolMessage.make(Protocol.ENTITY_VANISH, {"entity_id": entity.id, "reason": Protocol.VanishReason.LOGOUT}))
 	world.unload_empty()
+
+
+func _save(entity: ServerEntity) -> void:
+	entity.store_position()
+	accounts.save_character(entity.record)
+
+
+## Each player's check runs autosave_ms after they joined, so saves spread out
+## over the minute instead of all landing on one tick (02-D17).
+func _schedule_autosave(entity: ServerEntity, due_ms: int) -> void:
+	scheduler.schedule(due_ms, _autosave.bind(entity.peer_id, entity.id, due_ms))
+
+
+func _autosave(peer_id: int, entity_id: int, due_ms: int) -> void:
+	var entity: ServerEntity = _players.get(peer_id)
+	if entity == null or entity.id != entity_id:
+		return
+	entity.store_position()
+	if entity.record.dirty:
+		accounts.save_character(entity.record)
+	_schedule_autosave(entity, due_ms + autosave_ms)
 
 
 func _send_snapshots() -> void:

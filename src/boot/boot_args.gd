@@ -4,7 +4,7 @@ extends RefCounted
 
 enum Mode { SINGLE_PLAYER, SERVER, CONNECT, VIEWER, SHOTS }
 
-const KNOWN := ["server", "connect", "viewer", "shots", "netsim", "run-seconds"]
+const KNOWN := ["server", "connect", "viewer", "shots", "netsim", "run-seconds", "data-dir"]
 
 var mode: Mode = Mode.SINGLE_PLAYER
 ## Network conditions for single-player (02 section 14); "local" by default.
@@ -13,6 +13,9 @@ var connect_address: String = ""
 var shots_script: String = ""
 ## Quit cleanly after this many seconds; 0 runs until closed. Used by the smoke run.
 var run_seconds: float = 0.0
+## Folder for saves and settings instead of the user folder, so test runs never
+## touch the player's own (docs/03 section 9.1). Empty means the user folder.
+var data_dir: String = ""
 var errors: PackedStringArray = []
 
 
@@ -55,6 +58,10 @@ static func parse(arguments: PackedStringArray, dedicated_build: bool = false) -
 				args.netsim = value
 				if NetSimProfile.named(value) == null:
 					args.errors.append("--netsim must be one of %s" % ", ".join(NetSimProfile.names()))
+			"data-dir":
+				args.data_dir = value
+				if value.is_empty():
+					args.errors.append("--data-dir needs a folder")
 			"run-seconds":
 				if not value.is_valid_float() or value.to_float() <= 0.0:
 					args.errors.append("--run-seconds needs a positive number")

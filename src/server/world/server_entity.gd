@@ -22,6 +22,8 @@ var input_seq: int = 0
 var peer_id: int = 0
 ## Saved state of a player; null for other kinds.
 var record: CharacterRecord = null
+## Set once a player first stands on a map; later arrivals are map changes.
+var entered_world: bool = false
 
 
 static func player(entity_id: int, peer: int, character: CharacterRecord, walk_speed: float) -> ServerEntity:
@@ -42,6 +44,9 @@ static func player(entity_id: int, peer: int, character: CharacterRecord, walk_s
 func store_position() -> void:
 	if record == null:
 		return
-	record.map = map_id if not map_id.is_empty() else pending_map_id
+	var current_map: String = map_id if not map_id.is_empty() else pending_map_id
+	if record.map != current_map or record.position != position or record.facing_deg != facing_deg:
+		record.dirty = true
+	record.map = current_map
 	record.position = position
 	record.facing_deg = facing_deg
