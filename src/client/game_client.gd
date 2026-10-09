@@ -11,6 +11,7 @@ const SIDE := "CL"
 var connection: ClientConnection
 var world_view: WorldView
 var catalog: DataCatalog
+var visuals: VisualLibrary = VisualLibrary.new()
 ## Single-player picks the only character by itself (02 section 5.2).
 var auto_select_first_character: bool = true
 ## Tests turn this off and call update() themselves.
@@ -61,7 +62,10 @@ func _handle(message: ProtocolMessage) -> void:
 			_on_map_change(message)
 		Protocol.ENTITY_APPEAR:
 			var kind: int = message.get_int("kind")
-			world_view.add_entity(message.get_int("entity_id"), kind as Protocol.EntityKind, message.get_text("name"), _position_of(message), message.get_float("facing"))
+			var looks: Array[VisualConfig] = []
+			if kind == Protocol.EntityKind.PLAYER:
+				looks = player_visuals(message.get_int("type"), message.get_int("gender"), message.get_int("hair_style"))
+			world_view.add_entity(message.get_int("entity_id"), kind as Protocol.EntityKind, message.get_text("name"), _position_of(message), message.get_float("facing"), looks)
 		Protocol.ENTITY_VANISH:
 			world_view.remove_entity(message.get_int("entity_id"))
 		Protocol.MAP_READY:
@@ -85,7 +89,8 @@ func _on_map_change(message: ProtocolMessage) -> void:
 	map_id = catalog.id_at("maps", message.get_int("map"))
 	own_entity_id = message.get_int("entity_id")
 	world_view.load_map(map_id)
-	var own: EntityView = world_view.add_entity(own_entity_id, Protocol.EntityKind.PLAYER, "", _position_of(message), message.get_float("facing"))
+	var looks: Array[VisualConfig] = player_visuals(message.get_int("job"), message.get_int("gender"), message.get_int("hair_style"))
+	var own: EntityView = world_view.add_entity(own_entity_id, Protocol.EntityKind.PLAYER, "", _position_of(message), message.get_float("facing"), looks)
 	own.name = "OwnPlayer"
 	_waiting_for_map = true
 
@@ -103,6 +108,19 @@ func _on_snapshot(message: ProtocolMessage) -> void:
 		var z: float = entity.get("z", 0.0)
 		var facing: float = entity.get("facing", 0.0)
 		world_view.move_entity(entity_id, Vector3(x, y, z), facing)
+
+
+## Outfit of the job for the gender, then the hair style (docs/03 section 5).
+func player_visuals(job_index: int, gender: int, hair_index: int) -> Array[VisualConfig]:
+	var gender_key: String = "male" if gender == Protocol.Gender.MALE else "female"
+	var result: Array[VisualConfig] = []
+	var job: DataEntry = catalog.get_entry("jobs", catalog.id_at("jobs", job_index))
+	var job_visual: String = str(job.get_object("visual_ids").get(gender_key, "")) if job != null else ""
+	result.append(visuals.get_visual(VisualLibrary.CHARACTERS, job_visual))
+	var hair: DataEntry = catalog.get_entry("hair_styles", catalog.id_at("hair_styles", hair_index))
+	var hair_visual: String = str(hair.get_object("visual_ids").get(gender_key, "")) if hair != null else ""
+	result.append(visuals.get_visual(VisualLibrary.CHARACTERS, hair_visual))
+	return result
 
 
 static func _position_of(message: ProtocolMessage) -> Vector3:

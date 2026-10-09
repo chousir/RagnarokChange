@@ -1,0 +1,6 @@
+{
+  "scene": "res://tools/shots/scenes/benchmark.tscn",
+  "warmup_frames": 120,
+  "settle_frames": 30,
+  "measure_frames": 600
+}

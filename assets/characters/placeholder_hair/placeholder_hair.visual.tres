@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="VisualConfig" format=3]
+
+[ext_resource type="Script" path="res://src/client/visuals/visual_config.gd" id="1_config"]
+[ext_resource type="PackedScene" path="res://assets/characters/placeholder_hair/placeholder_hair.tscn" id="2_scene"]
+
+[resource]
+script = ExtResource("1_config")
+scene = ExtResource("2_scene")
+nameplate_height_m = 2.0
+pick_radius_m = 0.45
+pick_height_m = 1.9
+is_placeholder = true

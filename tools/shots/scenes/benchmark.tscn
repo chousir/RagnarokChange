@@ -1,0 +1,60 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://tools/shots/scenes/benchmark.gd" id="1_bench"]
+[ext_resource type="Script" path="res://src/client/world/observation_point.gd" id="2_point"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ground"]
+albedo_color = Color(0.4, 0.46, 0.32, 1)
+roughness = 0.95
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ground"]
+material = SubResource("StandardMaterial3D_ground")
+size = Vector2(400, 400)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sky"]
+
+[sub_resource type="Sky" id="Sky_main"]
+sky_material = SubResource("ProceduralSkyMaterial_sky")
+
+[sub_resource type="Environment" id="Environment_main"]
+background_mode = 2
+sky = SubResource("Sky_main")
+ambient_light_source = 3
+tonemap_mode = 2
+ssao_enabled = true
+glow_enabled = true
+sdfgi_enabled = true
+
+[node name="Benchmark" type="Node3D"]
+script = ExtResource("1_bench")
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_ground")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+rotation = Vector3(-0.8727, 0.5236, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 150.0
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_main")
+
+[node name="ObservationPoints" type="Node3D" parent="."]
+
+[node name="Overview" type="Marker3D" parent="ObservationPoints"]
+position = Vector3(0, 60, 90)
+rotation = Vector3(-0.588, 0, 0)
+script = ExtResource("2_point")
+point_id = "overview"
+
+[node name="Street" type="Marker3D" parent="ObservationPoints"]
+position = Vector3(2, 1.7, 30)
+rotation = Vector3(-0.007, 0.067, 0)
+script = ExtResource("2_point")
+point_id = "street"
+
+[node name="Close" type="Marker3D" parent="ObservationPoints"]
+position = Vector3(0, 1.5, 3.2)
+rotation = Vector3(-0.124, 0, 0)
+script = ExtResource("2_point")
+point_id = "close"

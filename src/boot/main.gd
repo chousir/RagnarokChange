@@ -7,6 +7,8 @@ const SIDE := ""
 ## Frame cap when nothing is drawn, so a headless run does not spin a core.
 const HEADLESS_MAX_FPS := 120
 const USER_FOLDER := "user://"
+## Development tool scene, loaded by path so game code never depends on tools/.
+const SHOTS_SCENE := "res://tools/shots/shots_runner.tscn"
 
 var _single_player: SinglePlayer = null
 var _quit_at_ms: int = -1
@@ -37,8 +39,8 @@ func _ready() -> void:
 			Log.info(SIDE, "boot", "the motion viewer arrives in M3")
 			_quit(0)
 		BootArgs.Mode.SHOTS:
-			Log.info(SIDE, "boot", "screenshot mode arrives in M0-f")
-			_quit(0)
+			# The tool reads its own arguments; boot only hands over the scene.
+			get_tree().change_scene_to_file.call_deferred(SHOTS_SCENE)
 
 
 func _process(_delta: float) -> void:

@@ -63,9 +63,9 @@ func unload_map() -> void:
 	map_id = ""
 
 
-func add_entity(entity_id: int, kind: Protocol.EntityKind, display_name: String, world_position: Vector3, facing_deg: float) -> EntityView:
+func add_entity(entity_id: int, kind: Protocol.EntityKind, display_name: String, world_position: Vector3, facing_deg: float, visuals: Array[VisualConfig] = []) -> EntityView:
 	remove_entity(entity_id)
-	var view: EntityView = EntityView.make(entity_id, kind, display_name)
+	var view: EntityView = EntityView.make(entity_id, kind, display_name, visuals)
 	add_child(view)
 	view.place(world_position, facing_deg)
 	entity_views[entity_id] = view
