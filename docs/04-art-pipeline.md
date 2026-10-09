@@ -4,6 +4,7 @@
 > 建立日期：2026-10-10
 > 依據：`docs/00-decisions.md`、`docs/01-architecture.md`、`docs/02-networking.md`、`docs/03-data-formats.md`
 > 決策編號格式：`04-Dxx`
+> 修訂：2026-10-10，第 11 節加上 Use Named Skins（依你的授權先照建議定案，見 05 第 16 節）
 
 ---
 
@@ -342,6 +343,7 @@ Skeleton3D（每個職業的身體各自綁一副，骨頭名稱統一）
 | 切線 | 開啟 | 法線貼圖需要 |
 | 光照烘焙 | 角色、怪物：動態；建築：08 決定 | — |
 | 人形骨架 | BoneMap＋SkeletonProfileHumanoid、重新命名骨頭、A 字姿勢開 Fix Silhouette | 動作共用（04-D13） |
+| 網格的骨架綁定 | 開啟 Use Named Skins（用骨頭名稱綁定） | 頭和頭髮才能套到任何一副身體骨架上（05-D02） |
 | 貼圖 | VRAM 壓縮（高品質）、產生 mipmap；法線貼圖用法線專用的壓縮格式 | 畫質和記憶體的平衡 |
 | 材質 | 有 ORM 貼圖時用 ORMMaterial3D；頭髮用 alpha scissor 或 alpha hash，避免透明排序問題；布料和葉子可以雙面 | — |
 | 點選用的碰撞 | 匯入腳本自動加上簡單的膠囊或方塊，放在客戶端專用的碰撞層（09） | 01 第 7.4 節 |

@@ -6,6 +6,7 @@
 > 決策編號格式：`03-Dxx`
 > 修訂：第 2 版（2026-10-10）依你確認第 1 版時的指示修改：所有資料都用英文，中文顯示文字另外放（00-S06）；RO 的老舊做法不照抄，並考慮效能優化（00-S14）。第 1 版的 10 項待確認事項你回覆「全部照建議」，紀錄在第 16.1 節。
 > 修訂：2026-10-10，第 10.1 節的 origin 加上 makehuman、第 10.2 節寫明 Tripo 的授權代碼（確認 04 時同意，見 04 第 19 節）
+> 修訂：2026-10-10，第 4.11 節第一版的外觀選項、第 8.3 節的範例改用 05 定的選項（依你的授權先照建議定案，見 05 第 16 節）
 
 ---
 
@@ -408,10 +409,10 @@ data/
 
 | 種類 | 內容 | 第一版 |
 |---|---|---|
-| hair_style | 髮型：id、name、依性別的 visual_id | 只有 `default` |
-| hair_color | 髮色：id、name（顏色值在客戶端的 `.tres`） | 只有 `default` |
-| eye_color | 瞳色：id、name（顏色值在客戶端的 `.tres`） | 只有 `default` |
-| face_shape | 臉部 blendshape 的名稱（ARKit 命名的子集，05 定） | 清單先空著 |
+| hair_style | 髮型：id、name、依性別的 visual_id | 4 種（05 第 10.3 節） |
+| hair_color | 髮色：id、name（顏色值在客戶端的 `.tres`） | 4 種（05 第 10.3 節） |
+| eye_color | 瞳色：id、name（顏色值在客戶端的 `.tres`） | 2 種（05 第 10.3 節） |
+| face_shape | 臉型 blendshape 的名稱（`face_` 開頭，05 第 10.1 節） | 清單先空著 |
 
 - 外觀自訂畫面之後才做（00-A10），但存檔裡的外觀欄位從第一版起就指向這裡的 ID。
 
@@ -631,9 +632,9 @@ saves/                     單機：使用者資料夾的 saves/；專用伺服�
   "job": "novice",
   "appearance": {
     "gender": "female",
-    "hair_style": "default",
-    "hair_color": "default",
-    "eye_color": "default",
+    "hair_style": "hair_twin_tails",
+    "hair_color": "auburn",
+    "eye_color": "brown",
     "face_shapes": {}
   },
   "position": { "map": "kronenberg", "x": 12.5, "y": 0.0, "z": -40.25, "facing_deg": 90.0 }
