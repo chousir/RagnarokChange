@@ -21,6 +21,7 @@ func test_modes_and_options_are_read() -> void:
 	assert_eq(BootArgs.parse(PackedStringArray(["--netsim=bad"])).netsim, "bad")
 	assert_eq(BootArgs.parse(PackedStringArray(["--viewer"])).mode, BootArgs.Mode.VIEWER)
 	assert_eq(BootArgs.parse(PackedStringArray(["--data-dir=C:/tmp/run"])).data_dir, "C:/tmp/run")
+	assert_eq(BootArgs.parse(PackedStringArray(["--capture=C:/tmp/view.png"])).capture_path, "C:/tmp/view.png")
 
 
 func test_dedicated_build_starts_the_server() -> void:
@@ -36,6 +37,7 @@ func test_mistakes_are_reported() -> void:
 		"--shots": "needs a script name",
 		"--connect": "needs host:port",
 		"--data-dir": "needs a folder",
+		"--capture=view.jpg": "needs a .png path",
 	}
 	for argument: String in cases:
 		var args: BootArgs = BootArgs.parse(PackedStringArray([argument]))

@@ -12,6 +12,7 @@ const SHOTS_SCENE := "res://tools/shots/shots_runner.tscn"
 
 var _single_player: SinglePlayer = null
 var _quit_at_ms: int = -1
+var _capture_path: String = ""
 
 
 func _ready() -> void:
@@ -29,6 +30,7 @@ func _ready() -> void:
 		Engine.max_fps = HEADLESS_MAX_FPS
 	if args.run_seconds > 0.0:
 		_quit_at_ms = Time.get_ticks_msec() + roundi(args.run_seconds * 1000.0)
+	_capture_path = args.capture_path
 	match args.mode:
 		BootArgs.Mode.SINGLE_PLAYER:
 			_start_single_player(args)
@@ -89,8 +91,14 @@ func _start_single_player(args: BootArgs) -> void:
 	Log.info(SIDE, "boot", "single-player started (netsim %s)" % args.netsim)
 
 
-## Summary line read by tools/scripts/smoke.ps1.
+## Summary line read by tools/scripts/smoke.ps1; with --capture, the last frame
+## is saved first so the real game view can be checked without a person.
 func _report_and_quit() -> void:
+	if not _capture_path.is_empty() and DisplayServer.get_name() != "headless":
+		await RenderingServer.frame_post_draw
+		var saved: Error = get_viewport().get_texture().get_image().save_png(_capture_path)
+		if saved != OK:
+			Log.error(SIDE, "boot", "cannot save %s (error %d)" % [_capture_path, saved])
 	if _single_player != null:
 		var server: GameServer = _single_player.server
 		var client: GameClient = _single_player.client

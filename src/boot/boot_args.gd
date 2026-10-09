@@ -4,7 +4,7 @@ extends RefCounted
 
 enum Mode { SINGLE_PLAYER, SERVER, CONNECT, VIEWER, SHOTS }
 
-const KNOWN := ["server", "connect", "viewer", "shots", "shots-label", "netsim", "run-seconds", "data-dir"]
+const KNOWN := ["server", "connect", "viewer", "shots", "shots-label", "netsim", "run-seconds", "data-dir", "capture"]
 
 var mode: Mode = Mode.SINGLE_PLAYER
 ## Network conditions for single-player (02 section 14); "local" by default.
@@ -18,6 +18,8 @@ var run_seconds: float = 0.0
 ## Folder for saves and settings instead of the user folder, so test runs never
 ## touch the player's own (docs/03 section 9.1). Empty means the user folder.
 var data_dir: String = ""
+## PNG path to save the last frame to when --run-seconds ends, for self-checks.
+var capture_path: String = ""
 var errors: PackedStringArray = []
 
 
@@ -62,6 +64,10 @@ static func parse(arguments: PackedStringArray, dedicated_build: bool = false) -
 				args.netsim = value
 				if NetSimProfile.named(value) == null:
 					args.errors.append("--netsim must be one of %s" % ", ".join(NetSimProfile.names()))
+			"capture":
+				args.capture_path = value
+				if value.is_empty() or not value.ends_with(".png"):
+					args.errors.append("--capture needs a .png path")
 			"data-dir":
 				args.data_dir = value
 				if value.is_empty():

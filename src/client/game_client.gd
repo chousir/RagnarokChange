@@ -7,6 +7,11 @@ extends Node
 signal entered_map(map_id: String)
 
 const SIDE := "CL"
+## Fixed follow camera until the camera rig of M1 (docs/09 section 3.2 defaults).
+const CAMERA_DISTANCE_M := 6.0
+const CAMERA_PITCH_DEG := -20.0
+const CAMERA_TARGET_HEIGHT_M := 1.5
+const CAMERA_FOV_DEG := 60.0
 
 var connection: ClientConnection
 var world_view: WorldView
@@ -20,6 +25,7 @@ var map_id: String = ""
 var own_entity_id: int = 0
 var snapshots_received: int = 0
 var last_snapshot: ProtocolMessage = null
+var camera: Camera3D = null
 
 var _waiting_for_map: bool = false
 
@@ -33,6 +39,10 @@ func setup(client_transport: Transport, client_clock: GameClock, data: DataCatal
 	world_view = WorldView.new()
 	world_view.name = "WorldView"
 	add_child(world_view)
+	camera = Camera3D.new()
+	camera.name = "FollowCamera"
+	camera.fov = CAMERA_FOV_DEG
+	world_view.add_child(camera)
 
 
 func _process(_delta: float) -> void:
@@ -93,6 +103,7 @@ func _on_map_change(message: ProtocolMessage) -> void:
 	var own: EntityView = world_view.add_entity(own_entity_id, Protocol.EntityKind.PLAYER, "", _position_of(message), message.get_float("facing"), looks)
 	own.name = "OwnPlayer"
 	_waiting_for_map = true
+	_follow(own)
 
 
 ## Until interpolation and prediction come in M1, views jump to the newest data.
@@ -100,6 +111,9 @@ func _on_snapshot(message: ProtocolMessage) -> void:
 	snapshots_received += 1
 	last_snapshot = message
 	world_view.move_entity(own_entity_id, _position_of(message), message.get_float("facing"))
+	if world_view.entity_views.has(own_entity_id):
+		var own: EntityView = world_view.entity_views[own_entity_id]
+		_follow(own)
 	for item: Variant in message.get_list("entities"):
 		var entity: Dictionary = item
 		var entity_id: int = entity.get("entity_id", 0)
@@ -121,6 +135,16 @@ func player_visuals(job_index: int, gender: int, hair_index: int) -> Array[Visua
 	var hair_visual: String = str(hair.get_object("visual_ids").get(gender_key, "")) if hair != null else ""
 	result.append(visuals.get_visual(VisualLibrary.CHARACTERS, hair_visual))
 	return result
+
+
+## Puts the camera behind and above the player, looking at the chest.
+func _follow(own: EntityView) -> void:
+	var target: Vector3 = own.position + Vector3(0.0, CAMERA_TARGET_HEIGHT_M, 0.0)
+	var pitch: float = deg_to_rad(-CAMERA_PITCH_DEG)
+	var behind: Vector3 = Vector3(0.0, sin(pitch), cos(pitch)) * CAMERA_DISTANCE_M
+	camera.position = target + behind.rotated(Vector3.UP, own.rotation.y)
+	if camera.is_inside_tree():
+		camera.look_at(target)
 
 
 static func _position_of(message: ProtocolMessage) -> Vector3:

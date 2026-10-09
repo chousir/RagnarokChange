@@ -64,6 +64,10 @@ func test_player_enters_the_start_map_and_gets_snapshots() -> void:
 	assert_between(client.snapshots_received - before, 55, 61, "30 snapshots a second")
 	var own: EntityView = client.world_view.entity_views[client.own_entity_id]
 	assert_almost_eq(own.position, _start.origin, Vector3(0.01, 0.01, 0.01))
+	# Placeholder follow camera: 6 m behind, 20 degrees above the chest (09 section 3.2).
+	var pitch: float = deg_to_rad(20.0)
+	var expected: Vector3 = _start.origin + Vector3(0.0, 1.5, 0.0) + Vector3(0.0, sin(pitch), cos(pitch)).rotated(Vector3.UP, own.rotation.y) * 6.0
+	assert_almost_eq(client.camera.position, expected, Vector3(0.01, 0.01, 0.01))
 
 
 func test_players_see_each_other_come_and_go() -> void:
