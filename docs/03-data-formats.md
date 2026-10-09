@@ -5,6 +5,7 @@
 > 依據：`docs/00-decisions.md`、`docs/01-architecture.md`、`docs/02-networking.md`
 > 決策編號格式：`03-Dxx`
 > 修訂：第 2 版（2026-10-10）依你確認第 1 版時的指示修改：所有資料都用英文，中文顯示文字另外放（00-S06）；RO 的老舊做法不照抄，並考慮效能優化（00-S14）。第 1 版的 10 項待確認事項你回覆「全部照建議」，紀錄在第 16.1 節。
+> 修訂：2026-10-10，第 10.1 節的 origin 加上 makehuman、第 10.2 節寫明 Tripo 的授權代碼（確認 04 時同意，見 04 第 19 節）
 
 ---
 
@@ -768,7 +769,7 @@ mouse_sensitivity=1.0
 | id | 例如 `polyhaven_<資產名稱>` | ✔ |
 | paths | `assets/` 底下這筆涵蓋的檔案或資料夾（處理後的成品，包含 LOD、縮放過的貼圖等衍生檔） | ✔ |
 | source_paths | `assets/_source/` 底下的原始檔 | 有原始檔時 |
-| origin | 來源：polyhaven、ambientcg、mixamo、sketchfab、tripo、quaternius、google_fonts、original（自製）、other | ✔ |
+| origin | 來源：polyhaven、ambientcg、makehuman、mixamo、sketchfab、tripo、quaternius、google_fonts、original（自製）、other | ✔ |
 | title | 原作品名稱 | ✔ |
 | url | 原始頁面 | 自製以外都要 |
 | author | 作者 | CC-BY 必填 |
@@ -807,7 +808,7 @@ mouse_sensitivity=1.0
 
 1. `assets/` 底下每個素材檔，都剛好被一筆的 `paths` 或 `source_paths` 涵蓋。`_inbox/` 不檢查。素材檔指這些副檔名：glb、gltf、fbx、obj、blend、png、jpg、jpeg、webp、tga、exr、hdr、wav、ogg、mp3、ttf、otf。
 2. 每一筆寫到的路徑都存在。
-3. 授權在允許清單裡：`CC0-1.0`、`CC-BY-4.0`、`OFL-1.1`、`LicenseRef-Mixamo`、`LicenseRef-Original`，以及 04 查證後加入的 Tripo 授權。禁止改作（ND）的授權一律不收（計畫大綱 04）。
+3. 授權在允許清單裡：`CC0-1.0`、`CC-BY-4.0`、`OFL-1.1`、`LicenseRef-Mixamo`、`LicenseRef-Original`、`LicenseRef-Tripo-Free`、`LicenseRef-Tripo-Paid`（Tripo 的兩個代碼依 04-D04）。禁止改作（ND）的授權一律不收（計畫大綱 04）。
 4. CC-BY 要有作者和署名文字；來源是 mixamo 的要有 `no_source_redistribution`；來源是 tripo 的要有方案等級。
 5. ID 不重複，而且依 id 排序。
 
