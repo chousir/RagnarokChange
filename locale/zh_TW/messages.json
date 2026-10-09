@@ -1,0 +1,11 @@
+{
+  "table": "messages",
+  "entries": [
+    { "id": "msg.login.version_mismatch", "text": "遊戲版本和伺服器不同。" },
+    { "id": "msg.login.data_mismatch", "text": "遊戲資料和伺服器不同。" },
+    { "id": "msg.login.server_full", "text": "伺服器人數已滿。" },
+    { "id": "msg.login.wrong_password", "text": "帳號或密碼錯誤。" },
+    { "id": "msg.login.ip_blocked", "text": "登入失敗次數過多，請稍後再試。" },
+    { "id": "msg.login.server_closing", "text": "伺服器正在關閉。" }
+  ]
+}

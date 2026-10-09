@@ -1,0 +1,15 @@
+{
+  "table": "rules",
+  "entries": [
+    {
+      "id": "default",
+      "cell_size_m": 1.0,
+      "start_map": "kronenberg",
+      "start_point": "start",
+      "character_name_length": [2, 16],
+      "player_walk_ms_per_cell": 150,
+      "arrival_protection_ms": 3000,
+      "note": "Values from docs/03 section 4.10 and docs/06; RO default walk speed is 150 ms per cell."
+    }
+  ]
+}

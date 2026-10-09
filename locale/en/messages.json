@@ -1,0 +1,11 @@
+{
+  "table": "messages",
+  "entries": [
+    { "id": "msg.login.version_mismatch", "text": "The game version does not match the server." },
+    { "id": "msg.login.data_mismatch", "text": "The game data does not match the server." },
+    { "id": "msg.login.server_full", "text": "The server is full." },
+    { "id": "msg.login.wrong_password", "text": "Wrong account or password." },
+    { "id": "msg.login.ip_blocked", "text": "Too many failed logins. Please try again later." },
+    { "id": "msg.login.server_closing", "text": "The server is shutting down." }
+  ]
+}

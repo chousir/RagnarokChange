@@ -1,0 +1,21 @@
+{
+  "table": "names",
+  "entries": [
+    { "id": "job.novice.name", "text": "初心者" },
+    { "id": "job.swordsman.name", "text": "劍士" },
+    { "id": "job.thief.name", "text": "盜賊" },
+    { "id": "job.acolyte.name", "text": "服事" },
+    { "id": "map.kronenberg.name", "text": "KRONENBERG王都" },
+    { "id": "map.kronenberg_south_field.name", "text": "王都南方草原" },
+    { "id": "hair_style.hair_twin_tails.name", "text": "雙馬尾" },
+    { "id": "hair_style.hair_long_straight.name", "text": "長直髮" },
+    { "id": "hair_style.hair_ponytail.name", "text": "馬尾" },
+    { "id": "hair_style.hair_short_tied.name", "text": "短髮小馬尾" },
+    { "id": "hair_color.auburn.name", "text": "赤褐" },
+    { "id": "hair_color.violet.name", "text": "紫" },
+    { "id": "hair_color.black.name", "text": "黑" },
+    { "id": "hair_color.brown.name", "text": "棕" },
+    { "id": "eye_color.brown.name", "text": "棕" },
+    { "id": "eye_color.gray_violet.name", "text": "灰紫" }
+  ]
+}

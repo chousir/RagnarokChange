@@ -1,0 +1,8 @@
+{
+  "table": "ui",
+  "entries": [
+    { "id": "ui.loading.title", "text": "讀取中" },
+    { "id": "ui.hud.hp", "text": "HP" },
+    { "id": "ui.hud.sp", "text": "SP" }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "table": "eye_colors",
+  "entries": [
+    { "id": "brown", "name": "Brown" },
+    { "id": "gray_violet", "name": "Gray Violet" }
+  ]
+}

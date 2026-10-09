@@ -1,0 +1,19 @@
+{
+  "table": "maps",
+  "entries": [
+    {
+      "id": "kronenberg",
+      "name": "Kronenberg",
+      "type": "town",
+      "flags": ["town"],
+      "interest_radius_m": 50
+    },
+    {
+      "id": "kronenberg_south_field",
+      "name": "Kronenberg South Field",
+      "type": "field",
+      "flags": [],
+      "interest_radius_m": 50
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "table": "jobs",
+  "entries": [
+    {
+      "id": "novice",
+      "name": "Novice",
+      "tier": "novice",
+      "visual_ids": { "female": "novice_female" },
+      "ro_ref": "Novice"
+    },
+    {
+      "id": "swordsman",
+      "name": "Swordsman",
+      "tier": "first",
+      "base_job": "novice",
+      "visual_ids": { "female": "swordsman_female" },
+      "ro_ref": "Swordman"
+    },
+    {
+      "id": "thief",
+      "name": "Thief",
+      "tier": "first",
+      "base_job": "novice",
+      "visual_ids": { "female": "thief_female" },
+      "ro_ref": "Thief"
+    },
+    {
+      "id": "acolyte",
+      "name": "Acolyte",
+      "tier": "first",
+      "base_job": "novice",
+      "visual_ids": { "female": "acolyte_female" },
+      "ro_ref": "Acolyte"
+    }
+  ]
+}

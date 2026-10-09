@@ -1,0 +1,9 @@
+{
+  "table": "hair_styles",
+  "entries": [
+    { "id": "hair_twin_tails", "name": "Twin Tails", "visual_ids": { "female": "hair_twin_tails" } },
+    { "id": "hair_long_straight", "name": "Long Straight", "visual_ids": { "female": "hair_long_straight" } },
+    { "id": "hair_ponytail", "name": "Ponytail", "visual_ids": { "female": "hair_ponytail" } },
+    { "id": "hair_short_tied", "name": "Short Tied", "visual_ids": { "female": "hair_short_tied" } }
+  ]
+}
