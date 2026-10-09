@@ -2,7 +2,7 @@
 
 這個資料夾是遊戲的目標樣貌（00-S12）。檔名一律用英文（00-S06），格式是 `<類別>-<名稱>.jpg`：
 
-- 類別：`character`（角色）、`monster`（魔物）、`npc`、`weapon`（武器）、`map`（地圖）、`building`（建築）
+- 類別：`character`（角色）、`monster`（魔物）、`npc`、`weapon`（武器）、`armor`（防具）、`map`（地圖）、`building`（建築）
 - 名稱：英文小寫加底線，盡量跟遊戲資料的 ID 一樣；角色依性別加 `_female`、`_male`
 
 你新增圖片時可以照舊用中文檔名，我會改成英文，並把中文名稱登記在下表。中文名稱就是遊戲畫面上預定顯示的名稱（顯示文字的放法見 03 第 7 節）。
@@ -46,6 +46,12 @@
 | weapon-two_handed_sword.jpg | 雙手劍類 | `two_handed_sword` |
 | weapon-mace.jpg | 鈍器類 | `one_handed_mace`、`two_handed_mace` |
 | weapon-one_handed_staff.jpg | 單手杖類 | `one_handed_staff` |
+
+## 防具
+
+| 檔名 | 中文名稱 | 對應的裝備位置（03 第 3.5 節） |
+|---|---|---|
+| armor-shield.jpg | 盾牌類 | `shield` |
 
 ## 地圖與建築
 
