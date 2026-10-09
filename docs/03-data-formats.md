@@ -7,6 +7,7 @@
 > 修訂：第 2 版（2026-10-10）依你確認第 1 版時的指示修改：所有資料都用英文，中文顯示文字另外放（00-S06）；RO 的老舊做法不照抄，並考慮效能優化（00-S14）。第 1 版的 10 項待確認事項你回覆「全部照建議」，紀錄在第 16.1 節。
 > 修訂：2026-10-10，第 10.1 節的 origin 加上 makehuman、第 10.2 節寫明 Tripo 的授權代碼（確認 04 時同意，見 04 第 19 節）
 > 修訂：2026-10-10，第 4.11 節第一版的外觀選項、第 8.3 節的範例改用 05 定的選項（依你的授權先照建議定案，見 05 第 16 節）
+> 修訂：2026-10-10，第 4.9 節加上等級差修正表、第 4.10 節加上戰鬥用的規則常數（依你的授權先照建議定案，見 06 第 19 節）
 
 ---
 
@@ -390,6 +391,7 @@ data/
 | stat_points.json | 到每個 Base 等級為止累計的素質點數（1 級 48 點） | statpoint.yml | M5 |
 | element.json | 屬性表：屬性等級 1～4 × 攻擊屬性 10 種 × 防禦屬性 10 種，值是百分率（−100～200） | attr_fix.yml | M5 |
 | size_modifiers.json | 武器種類 × 體型的修正百分率，沒寫的是 100 | size_fix.yml | M5 |
+| level_penalty.json | 依「怪物等級 − 玩家等級」調整經驗和掉落率的表（Renewal） | level_penalty.yml | M5 |
 
 ### 4.10 全域規則（`data/rules/`）
 
@@ -404,6 +406,13 @@ data/
 | arrival_protection_ms | 換圖後的保護時間 3000 | 02 已定 | M1 |
 | default_save_map、default_save_point | 預設儲存點（死亡後復活的地方） | 06、08 | M5 |
 | logout_block_ms | 戰鬥後不能登出的時間 10000 | 02 已定 | M9 |
+| max_aspd | ASPD 上限 190（一轉、二轉） | 06 | M5 |
+| player_hit_pct | 玩家的命中時間在 amotion 的位置，100 表示 amotion 結束時 | 06 | M5 |
+| heal_block_weight_pct、major_overweight_pct | 負重 70% 以上不自然回復；90% 以上不能攻擊和使用技能 | 06 | M6 |
+| death_penalty_per_10000 | 死亡時失去目前等級所需經驗的比例，100 就是 1% | 06 | M5 |
+| respawn_hp、respawn_sp | 回到儲存點時的 HP、SP，各 1 | 06 | M5 |
+| loot_priority_ms | 撿取優先權的三段時間：3000、2000、2000 | 06 | M6 |
+| ground_item_lifetime_ms | 掉落物在地上的時間 60000 | 06 | M6 |
 
 ### 4.11 外觀選項（`data/appearance/`）
 
