@@ -34,10 +34,19 @@ if (-not $Godot) {
     }
 }
 
+# Editor plugins (Terrain3D 1.0.2) leak a dock at exit when the editor imports
+# headless. Only these exit-time leak reports are tolerated, and only while
+# importing; they are shown as warnings.
+$importExitLeaks = @(
+    '^\s*ERROR: \d+ RID allocations of type .+ were leaked at exit\.$',
+    '^\s*ERROR: \d+ resources still in use at exit'
+)
+
 function Invoke-GodotStep {
     param(
         [string]$Name,
-        [string[]]$Arguments
+        [string[]]$Arguments,
+        [string[]]$Tolerated = @()
     )
     Write-Host "== $Name =="
     $previousPreference = $ErrorActionPreference
@@ -47,9 +56,18 @@ function Invoke-GodotStep {
     $ErrorActionPreference = $previousPreference
 
     $output | Set-Content -Path (Join-Path $logDir "$Name.log") -Encoding UTF8
-    $errorLines = @($output | Where-Object { $_ -match '^\s*(SCRIPT ERROR|USER ERROR|ERROR):' })
-    foreach ($line in $errorLines) {
-        Write-Host "  $line"
+    $errorLines = @()
+    foreach ($line in @($output | Where-Object { $_ -match '^\s*(SCRIPT ERROR|USER ERROR|ERROR):' })) {
+        $known = $false
+        foreach ($pattern in $Tolerated) {
+            if ($line -match $pattern) { $known = $true }
+        }
+        if ($known) {
+            Write-Host "  (tolerated) $line"
+        } else {
+            $errorLines += $line
+            Write-Host "  $line"
+        }
     }
     return [pscustomobject]@{
         Name = $Name
@@ -61,7 +79,7 @@ function Invoke-GodotStep {
 
 $failures = @()
 
-$import = Invoke-GodotStep -Name 'import' -Arguments @('--headless', '--path', $projectRoot, '--import')
+$import = Invoke-GodotStep -Name 'import' -Arguments @('--headless', '--path', $projectRoot, '--import') -Tolerated $importExitLeaks
 if ($import.ExitCode -ne 0) { $failures += "import exited with code $($import.ExitCode)" }
 if ($import.ErrorCount -gt 0) { $failures += "import printed $($import.ErrorCount) error line(s)" }
 
