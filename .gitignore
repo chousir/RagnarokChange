@@ -1,0 +1,23 @@
+# Godot cache (docs/01-architecture.md, section 13.4)
+.godot/
+
+# Generated output: screenshots, reports, performance logs, builds
+artifacts/
+export/
+builds/
+
+# Asset inbox: only the placeholders are tracked (docs/04-art-pipeline.md, section 6)
+assets/_inbox/*
+!assets/_inbox/.gdignore
+!assets/_inbox/.gitkeep
+
+# Blender backups
+*.blend1
+*.blend2
+
+# Temporary and OS files
+*.tmp
+*.bak~
+Thumbs.db
+desktop.ini
+.DS_Store
