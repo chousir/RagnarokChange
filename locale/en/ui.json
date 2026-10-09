@@ -3,6 +3,7 @@
   "entries": [
     { "id": "ui.loading.title", "text": "Loading" },
     { "id": "ui.hud.hp", "text": "HP" },
-    { "id": "ui.hud.sp", "text": "SP" }
+    { "id": "ui.hud.sp", "text": "SP" },
+    { "id": "ui.character.default_name", "text": "Adventurer" }
   ]
 }

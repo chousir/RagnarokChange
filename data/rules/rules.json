@@ -9,6 +9,13 @@
       "character_name_length": [2, 16],
       "player_walk_ms_per_cell": 150,
       "arrival_protection_ms": 3000,
+      "new_character": {
+        "job": "novice",
+        "gender": "female",
+        "hair_style": "hair_twin_tails",
+        "hair_color": "auburn",
+        "eye_color": "brown"
+      },
       "note": "Values from docs/03 section 4.10 and docs/06; RO default walk speed is 150 ms per cell."
     }
   ]

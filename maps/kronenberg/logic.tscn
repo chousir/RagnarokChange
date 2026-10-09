@@ -1,0 +1,9 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/shared/map/markers/spawn_point.gd" id="1_spawn"]
+
+[node name="Logic" type="Node3D"]
+
+[node name="Start" type="Marker3D" parent="."]
+script = ExtResource("1_spawn")
+point_id = "start"

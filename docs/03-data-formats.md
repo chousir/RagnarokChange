@@ -8,6 +8,7 @@
 > 修訂：2026-10-10，第 10.1 節的 origin 加上 makehuman、第 10.2 節寫明 Tripo 的授權代碼（確認 04 時同意，見 04 第 19 節）
 > 修訂：2026-10-10，第 4.11 節第一版的外觀選項、第 8.3 節的範例改用 05 定的選項（依你的授權先照建議定案，見 05 第 16 節）
 > 修訂：2026-10-10，第 4.9 節加上等級差修正表、第 4.10 節加上戰鬥用的規則常數（依你的授權先照建議定案，見 06 第 19 節）
+> 修訂：2026-10-10，M0 實作時依 11-D10 補充：第 3.1 節加上外觀資料夾的例外、第 3.3 節寫明換算後的欄位名稱、第 4.10 節加上 `new_character`、第 4.11 節寫明每種外觀各自一張表（見 `artifacts/review/m0-b`、`m0-d` 的報告）
 
 ---
 
@@ -90,6 +91,7 @@
 ```
 
 - 同一種資料可以分成多個檔（例如技能依職業分檔），載入時合併；ID 在整種資料裡都不能重複。
+- 唯一的例外：`data/appearance/` 放四張表（hair_styles、hair_colors、eye_colors、face_shapes），因為髮色和瞳色都有 `brown`，放同一張表會撞 ID（第 4.11 節）。
 - JSON 不能寫註解。需要說明時，用兩個所有項目都可以有、遊戲不會讀的欄位（一樣用英文）：
   - `ro_ref`：對應的 RO 項目，例如 `PORING (1002)`，用來追查數值的來源。
   - `note`：給人看的備註。
@@ -130,6 +132,7 @@ Godot 的 JSON 解析器跟標準不完全一樣（官方文件有寫），要�
 - 公尺/秒 ＝ 1 格的長度 ÷（每格毫秒 ÷ 1000）
 - 「1 格的長度」放在 `data/rules/`（03-D12），由 06 決定，暫定 1 m（計畫大綱）。
 - 換算只在載入時做一次。執行中的程式一律用公尺和公尺/秒，不會出現格數。
+  - 換算後的欄位名稱：`xxx_cells` 多一個 `xxx_m`，`xxx_ms_per_cell` 多一個 `xxx_mps`（公尺/秒）。原本的 RO 數值保留，方便對照。
 - 例：RO 玩家預設 150 毫秒走一格，1 格 ＝ 1 m 時就是 6.67 m/s。以寫實人物來說偏快，06 和 09 會一起檢討。
 
 ### 3.4 數字
@@ -404,6 +407,7 @@ data/
 | character_name_length | 角色名稱的字數範圍 `[2, 16]`（03-D19） | 本文件 | M0 |
 | player_walk_ms_per_cell | 玩家預設移動速度（RO 是 150） | 06、09 | M1 |
 | arrival_protection_ms | 換圖後的保護時間 3000 | 02 已定 | M1 |
+| new_character | 新角色的職業和預設外觀：job、gender、hair_style、hair_color、eye_color（novice、female、hair_twin_tails、auburn、brown），每一項都要是資料表裡的 ID | 05 第 10.3 節 | M0 |
 | default_save_map、default_save_point | 預設儲存點（死亡後復活的地方） | 06、08 | M5 |
 | logout_block_ms | 戰鬥後不能登出的時間 10000 | 02 已定 | M9 |
 | max_aspd | ASPD 上限 190（一轉、二轉） | 06 | M5 |
@@ -424,6 +428,7 @@ data/
 | face_shape | 臉型 blendshape 的名稱（`face_` 開頭，05 第 10.1 節） | 清單先空著 |
 
 - 外觀自訂畫面之後才做（00-A10），但存檔裡的外觀欄位從第一版起就指向這裡的 ID。
+- 每一種各自一張表：hair_styles、hair_colors、eye_colors、face_shapes（第 3.1 節的例外）。顯示文字的鍵是 `hair_style.<id>.name`、`hair_color.<id>.name`、`eye_color.<id>.name`。
 
 ### 4.12 地圖定義（`data/maps/`）
 

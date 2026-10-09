@@ -105,6 +105,48 @@ static func find_visual_references(src_root: String) -> PackedStringArray:
 	return problems
 
 
+## Returns every visual resource that a map's logic scene depends on, directly
+## or through other scenes and resources (docs/01-architecture.md section 4.3:
+## the server loads logic scenes, so they must stay free of visuals).
+static func find_logic_scene_visuals(maps_root: String) -> PackedStringArray:
+	var problems: PackedStringArray = []
+	if not DirAccess.dir_exists_absolute(maps_root):
+		return problems
+	for map_dir: String in DirAccess.get_directories_at(maps_root):
+		var logic_path: String = maps_root.path_join(map_dir).path_join("logic.tscn")
+		if FileAccess.file_exists(logic_path):
+			_check_dependencies(logic_path, logic_path, {}, problems)
+	return problems
+
+
+static func is_visual_path(path: String) -> bool:
+	if path.begins_with("res://assets/"):
+		return true
+	for extension: String in VISUAL_EXTENSIONS:
+		if path.ends_with(extension):
+			return true
+	return false
+
+
+static func _check_dependencies(scene_path: String, path: String, seen: Dictionary, problems: PackedStringArray) -> void:
+	for dependency: String in ResourceLoader.get_dependencies(path):
+		var dependency_path: String = _dependency_path(dependency)
+		if dependency_path.is_empty() or seen.has(dependency_path):
+			continue
+		seen[dependency_path] = true
+		if is_visual_path(dependency_path):
+			problems.append("%s depends on %s" % [scene_path, dependency_path])
+		elif dependency_path.get_extension() in ["tscn", "tres", "scn", "res"] and ResourceLoader.exists(dependency_path):
+			_check_dependencies(scene_path, dependency_path, seen, problems)
+
+
+## get_dependencies() gives plain paths, or "uid::type::path" strings for some
+## resources; the path is the last part either way.
+static func _dependency_path(dependency: String) -> String:
+	var parts: PackedStringArray = dependency.split("::")
+	return parts[parts.size() - 1]
+
+
 static func _collect(root: String, relative: String, extensions: PackedStringArray, excluded_dirs: PackedStringArray, result: PackedStringArray) -> void:
 	var directory: String = root.path_join(relative) if not relative.is_empty() else root
 	if not DirAccess.dir_exists_absolute(directory):

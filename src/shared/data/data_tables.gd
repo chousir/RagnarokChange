@@ -26,6 +26,13 @@ static func _rules() -> DataTableSchema:
 		DataField.of("character_name_length", DataField.Kind.INT_PAIR).between(1, 32),
 		DataField.of("player_walk_ms_per_cell", DataField.Kind.INT).between(20, 1000),
 		DataField.of("arrival_protection_ms", DataField.Kind.INT).between(0, 60000),
+		DataField.of("new_character", DataField.Kind.OBJECT).with_fields([
+			DataField.of("job", DataField.Kind.REF).refers_to("jobs"),
+			DataField.of("gender", DataField.Kind.ENUM).one_of(["female", "male"]),
+			DataField.of("hair_style", DataField.Kind.REF).refers_to("hair_styles"),
+			DataField.of("hair_color", DataField.Kind.REF).refers_to("hair_colors"),
+			DataField.of("eye_color", DataField.Kind.REF).refers_to("eye_colors"),
+		]),
 	])
 
 
