@@ -9,6 +9,7 @@
 
 1. 提示詞用英文，大部分生圖工具對英文的理解比較好。
 2. **給 Tripo 的視角圖**（P-11～P-75）：先生成正面（front），再把正面圖當參考圖，用 P-02（左）、P-03（後）、P-04（右）生成其他視角。每一段提示詞後面都要接上 **P-01**。
+   - **Tripo 免費方案沒有多視角，只要一張圖**：角色、怪物、武器只生成正面；道具、地標的提示詞本來就是 3/4 視角或正面一張。初心者（女）用 P-11F（頭髮盤起、不畫背包），背包另外用 P-28（見 `2026-10-10-review-round-2.md` 第 6.3 節）。
 3. 工具可以放參考圖的話，把對應的概念圖也放進去，顏色和細節會比較準。
 4. 工具有「負面提示詞」欄位的話，貼 **P-05**；生成武器、盾牌時，把 P-05 裡的 `weapon, shield` 拿掉。
 5. 比例：視角圖用 1:1（建築、橋用 16:9 也可以）；概念圖用 4:3；載入畫面用 16:9。
@@ -100,6 +101,26 @@ No ribbon, no hat, no weapon, no staff, no shield.
 ```
 
 ---
+
+### P-11F 初心者（女）`novice_female`——Tripo 免費方案用（單張正面）
+
+跟 P-11 的差別：頭髮全部盤起來（脖子和肩膀完全露出來）、不畫背包（背包用 P-28 另外做）。後面接 P-01。
+
+```text
+Orthographic FRONT view of an original character: a young woman novice adventurer, full body, about 1.60 m tall, slim build, calm friendly expression. Standing straight in an A-pose: arms about 45 degrees away from the body, elbows slightly bent, palms facing the thighs, fingers slightly apart and not holding anything, feet shoulder-width apart, looking straight ahead.
+Realistic fantasy medieval European style, high-quality game character, physically based materials with light wear and dirt.
+Hair: auburn hair pulled back tightly into a small bun at the back of the head, so the neck and the shoulders are completely clear.
+Outfit: a sleeveless off-white linen tunic reaching mid-thigh with a laced V-neck, over a dark red undershirt that shows at the neckline and through the side slits; two brown leather straps crossing in an X over the chest and over the back; a dark red wool sash under a wide brown leather belt with a brass buckle; a small brown leather pouch on the right hip; brown fingerless leather gloves with off-white cloth wraps on the forearms; off-white canvas trousers with a sewn patch on one knee; tall brown leather boots with folded-down cuffs and buckle straps.
+No backpack, no helmet, no hat, no weapon, no scabbard, no shield.
+```
+
+### P-28 初心者的背包 `novice_backpack`（Tripo 免費方案用，單張 3/4 視角）
+
+後面接 P-01。
+
+```text
+Three-quarter view from slightly above of a single adventurer's backpack, isolated: dark brown leather, about 40 cm tall, 30 cm wide and 15 cm deep, rectangular with rounded corners, a large buckled front flap, a small strap with a brass buckle on the flap, worn and scuffed leather, and two short shoulder-strap stubs at the top and the bottom of the back panel. Realistic, physically based materials.
+```
 
 ## 3. 髮型、頭飾（正面，接 P-01；其他視角用 P-02～P-04）
 
@@ -286,6 +307,16 @@ Three-quarter view from slightly above of a single tall memorial column, isolate
 ```text
 Three-quarter view from slightly above of a single small town-square monument, isolated: a carved stone pedestal about 2 m tall carrying a bronze statue of a cloaked traveler raising a lantern, with green patina on the bronze. Total height about 4 m. Original design. Realistic, physically based materials.
 ```
+
+#### P-57b `kronenberg_temple_statue`（草稿：神像的樣子還沒定，`{STATUE}` 換成你的描述）
+
+正面，其他視角用 P-02～P-04；後面接 P-01。
+
+```text
+Orthographic FRONT view of a single statue on a pedestal, isolated: {STATUE}. The statue stands on a three-tier round pedestal of light-gray limestone with a carved original crest, about 4 m wide at the base; total height about 7 m. Weathered stone with light moss in the cracks. Original design. Realistic, physically based materials.
+```
+
+`{STATUE}` 的建議（原創）：`a white marble statue of a robed goddess with a pair of folded feathered wings on her back, holding a lantern in both hands in front of her chest, calm face looking slightly downward`
 
 #### P-58 `market_stall`
 
@@ -539,6 +570,14 @@ Title: "HUD MOCKUP". A 1920x1080 game screenshot mockup of a heads-up display ov
 ```
 
 ---
+
+### P-101 大教堂廣場的神像
+
+```text
+Title: "TEMPLE STATUE". The statue in the center of the cathedral square: {STATUE}, on a three-tier round limestone pedestal with a carved original crest, total height about 7 m. Front, side and back views, plus one view of the statue in front of a Gothic cathedral facade in morning light. Include a 1.7 m human silhouette for scale.
+```
+
+`{STATUE}` 同 P-57b。
 
 ## 8. 2D 遊戲素材
 
