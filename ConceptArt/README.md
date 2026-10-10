@@ -7,6 +7,9 @@
 
 你新增圖片時可以照舊用中文檔名，我會改成英文，並把中文名稱登記在下表。中文名稱就是遊戲畫面上預定顯示的名稱（顯示文字的放法見 03 第 7 節）。
 
+> 2026-10-10：依你的指示換了 8 張圖（四隻魔物、兩張地圖、王都建築、冒險公會服務員），原因是舊圖可能有版權疑慮。新舊差異、對規劃書和地圖白模的影響，見 `docs/proposals/2026-10-10-concept-art-update.md`（提案，待你確認）。
+> 圖片檔是在本機用 Git LFS 換上的（雲端環境不能上傳 LFS，見 `docs/proposals/README.md` 第 1 步）；如果這裡的說明跟資料夾裡的圖對不上，就是那一步還沒做。
+
 ## 角色
 
 | 檔名 | 中文名稱 | 說明 |
@@ -22,20 +25,20 @@
 
 ## 魔物
 
-正式的 ID 和數值在 07 定。圖上的英文標題有幾個是 RO 的原名，遊戲裡不用 Gravity 的名稱（00-A02），英文名稱改用你的中文名稱直譯。
+正式的 ID 和數值在 07 定。遊戲裡不用 Gravity 的名稱（00-A02），英文名稱用你的中文名稱直譯。2026-10-10 換的新圖，標題都不是 RO 的原名了。
 
 | 檔名 | 中文名稱 | 圖上的英文標題 | 說明 |
 |---|---|---|---|
-| monster-gelly.jpg | 果凍怪 | Gelly | 第一版的果凍類 |
-| monster-fluffy_caterpillar.jpg | 毛絨蟲 | Fabre（RO 原名） | 第一版的毛蟲類 |
-| monster-young_treant.jpg | 小樹精 | Young Treant（Young Elder Willow） | 應該是第一版的植物類，寫 07 時確認。外型跟 Marvel 的 Baby Groot 很像，之後跟 Gravity 相似的項目一起討論 |
-| monster-cute_bunny.jpg | 可愛兔 | Lunatic（RO 原名） | 不在 00-A07 的第一版陣容，寫 07 時確認 |
+| monster-gelly.jpg | 果凍怪 | Rolling Orb Glop | 第一版的果凍類。2026-10-10 換新圖：圓球形、半透明、體內有發光核心，圖上標了「滾動攻擊」。英文顯示名稱要用 Gelly 還是 Glop，列在提案待確認 |
+| monster-fluffy_caterpillar.jpg | 毛絨蟲 | Fluffy Caterpillar | 第一版的毛蟲類。2026-10-10 換新圖：造型跟舊圖相近，細節（眼睛、口器、觸角、背刺）比較清楚 |
+| monster-young_treant.jpg | 小樹精 | Young Treant | 第一版的植物類（07）。2026-10-10 換新圖：不再是人形，改成樹樁身體、樹根當腳、樹枝當手、頭頂一圈枝葉。下排有一隻沒有樹冠的斷樁版本，跟上排不一致，處理方式列在提案待確認 |
+| monster-cute_bunny.jpg | 可愛兔 | Cute Bunny | 不在第一版陣容（07-D03）。2026-10-10 換新圖：垂耳、站立、戴葉子頭冠和鈴鐺項圈 |
 
 ## NPC
 
 | 檔名 | 中文名稱 | 圖上的英文標題 | 說明 |
 |---|---|---|---|
-| npc-adventurer_guild_staff.jpg | 冒險公會服務員 | Kafra Service Staff（RO 原名） | 之後才做 |
+| npc-adventurer_guild_staff.jpg | 冒險公會服務員 | Caldwell Servants | 之後才做。2026-10-10 換新圖：藍色背心裙、米色圍裙、披肩上有「Caldwell」字樣和帶翅膀的沙漏徽章。要不要把 Caldwell 當成組織名稱，列在提案待確認 |
 
 ## 武器
 
@@ -57,7 +60,9 @@
 
 | 檔名 | 中文名稱 | 說明 |
 |---|---|---|
-| map-kronenberg.jpg | KRONENBERG王都 | 地圖 `kronenberg` 的佈局 |
-| map-kronenberg_south_field.jpg | 王都南方草原 | 地圖 `kronenberg_south_field` 的佈局 |
-| building-kronenberg.jpg | KRONENBERG王都的建築 | |
-| building-kronenberg_south_field.jpg | 王都南方草原的建築 | |
+| map-kronenberg.jpg | KRONENBERG王都 | 地圖 `kronenberg` 的佈局。2026-10-10 換新圖：城裡沒有河，北邊是城堡和新月形的城門，西邊是大教堂，五座城門（東南主城門、西南門、東門、北門、西北小門），南邊和東邊是雙層城牆 |
+| map-kronenberg_south_field.jpg | 王都南方草原 | 地圖 `kronenberg_south_field` 的佈局。2026-10-10 換新圖：北邊是城牆和雙塔城門，西邊有水晶遺跡，東北有發光樹洞的老樹，東邊有河、石拱橋、風車農場，中南有商隊營地，東南有池塘、立石、發光植物 |
+| building-kronenberg.jpg | KRONENBERG王都的建築 | 2026-10-10 換新圖（圖上標題是 Environment Design）：寫實的鳥瞰圖，王都在湖中，城門外有石橋，東北有圓頂宮殿 |
+| building-kronenberg_south_field.jpg | 王都南方草原的建築 | 沒有換。圖上的城門是方形門樓，跟新地圖的雙圓塔城門不同；處理方式列在提案待確認 |
+
+中文名稱「KRONENBERG王都」中英混合，你要求改成完整的中文譯名，候選名稱列在 `docs/proposals/2026-10-10-design-review.md`，確認後再改這裡和 `locale/`。
