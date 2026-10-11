@@ -12,8 +12,8 @@
 |---|---|
 | 1 | 職業、技能、素質、狀態優先用**台灣版 RO 的官方譯名**；查不到的先暫譯，標「暫譯」，定案時更新本表 |
 | 2 | 地名、人名、組織名：音譯或意譯擇一，整份表一致。之後的野外照「地名＋方位＋地形」命名（例如克羅能堡南方草原） |
-| 3 | 繁中不中英混合：只允許 **HP**、**SP** 兩個英文縮寫（守門測試會擋，01 第 4.3 節）；其他一律中文，例如 ATK 寫「攻擊力」 |
-| 4 | 繁中用全形標點（，。：「」（））；數字用半形；加號用全形「＋」，百分比用半形「%」，例如「攻擊力 ＋18」「攻擊速度增加 5%」 |
+| 3 | 繁中不中英混合，但 **RO 本來就用英文縮寫的照 RO 保留**，各語言都一樣、不翻譯：第 6 節的素質和數值（STR、INT、HP、SP、ATK…）和第 8 節的 BOSS、MVP。這兩節就是白名單，守門測試用同一份清單（01 第 4.3 節）；其他一律中文 |
+| 4 | 繁中用全形標點（，。：「」（））；數字用半形；加號用全形「＋」，百分比用半形「%」，例如「ATK ＋18」「攻擊速度增加 5%」 |
 | 5 | 英文版照 RO 英文版的寫法和縮寫（STR、ATK、Miss、Lucky…） |
 | 6 | 不用 Gravity 的名稱（00-A02）：怪物、NPC、組織、地名都用我們自己的名稱 |
 | 7 | 新名詞先加進本表，再寫進 `locale/` |
@@ -64,32 +64,27 @@
 | 小樹精 | Young Treant | `young_treant` | — |
 | 可愛兔 | Cute Bunny | `cute_bunny` | 不在第一版 |
 
-## 6. 素質、等級和數值
+## 6. 素質、等級和數值（各語言都用英文縮寫）
+
+照 RO：下面的縮寫在繁中、英文（之後的語言也一樣）都直接用，不翻譯。「意思」欄只給規劃書和物品說明參考。
+
+| 縮寫 | 意思 |
+|---|---|
+| STR、AGI、VIT、INT、DEX、LUK | 力量、敏捷、體力、智力、靈巧、幸運 |
+| HP、SP、MaxHP、MaxSP | 生命、魔力、最大值 |
+| ATK、MATK | 攻擊力、魔法攻擊力 |
+| DEF、MDEF | 防禦力、魔法防禦力 |
+| HIT、FLEE | 命中、迴避 |
+| CRI | 暴擊 |
+| ASPD | 攻擊速度 |
+| Base Lv、Job Lv | 基本等級、職業等級 |
+| EXP（Base EXP、Job EXP） | 經驗值 |
 
 | 繁中 | 英文 | 備註 |
 |---|---|---|
-| 力量 | STR | — |
-| 敏捷 | AGI | — |
-| 體力 | VIT | — |
-| 智力 | INT | — |
-| 靈巧 | DEX | — |
-| 幸運 | LUK | — |
-| 基本等級 | Base Level | — |
-| 職業等級 | Job Level | — |
-| 基本經驗、職業經驗 | Base EXP、Job EXP | — |
-| HP | HP | 繁中也用 HP |
-| SP | SP | 繁中也用 SP |
-| 最大 HP、最大 SP | MaxHP、MaxSP | — |
-| 攻擊力 | ATK | — |
-| 魔法攻擊力 | MATK | — |
-| 防禦力 | DEF | — |
-| 魔法防禦力 | MDEF | — |
-| 命中 | HIT | — |
-| 迴避 | FLEE | — |
-| 暴擊率 | CRI | 附加能力的「暴擊 ＋N」寫成「暴擊率 ＋N」 |
-| 完全迴避 | Perfect Dodge | 戰鬥文字另見第 7 節 |
-| 攻擊速度 | ASPD | — |
+| 完全迴避 | Perfect Dodge | 狀態視窗的項目；戰鬥文字另見第 7 節 |
 | 負重 | Weight | — |
+| 攻擊速度增加（百分比的效果） | Attack Speed | 例如附加能力「攻擊速度增加 5%」；固定值的寫「ASPD ＋1」 |
 
 ## 7. 戰鬥文字
 
@@ -106,7 +101,7 @@
 | 屬性 | 無、水、地、火、風、毒、聖、暗、念、不死 | Neutral、Water、Earth、Fire、Wind、Poison、Holy、Shadow、Ghost、Undead | `neutral`、`water`、`earth`、`fire`、`wind`、`poison`、`holy`、`dark`、`ghost`、`undead` |
 | 種族 | 無形、不死、動物、植物、昆蟲、魚貝、惡魔、人類、天使、龍族 | Formless、Undead、Brute、Plant、Insect、Fish、Demon、Demi-Human、Angel、Dragon | `formless`、`undead`、`brute`、`plant`、`insect`、`fish`、`demon`、`demihuman`、`angel`、`dragon` |
 | 體型 | 小型、中型、大型 | Small、Medium、Large | `small`、`medium`、`large` |
-| 怪物等級 | 一般、頭目、魔王（暫定；繁中不能寫 BOSS、MVP） | Normal、Boss、MVP | `normal`、`boss`、`mvp` |
+| 怪物等級 | 一般、BOSS、MVP | Normal、BOSS、MVP | `normal`、`boss`、`mvp` |
 
 ## 9. 裝備和物品
 
@@ -151,4 +146,5 @@
 
 | 日期 | 內容 |
 |---|---|
-| 2026-10-11 | 第 1 版：地圖名稱（克羅能堡、克羅能堡南方草原）、卡德威爾、雅典娜神像、附加能力、繁中只用 HP 和 SP 兩個英文縮寫、戰鬥文字 |
+| 2026-10-11 | 第 1 版：地圖名稱（克羅能堡、克羅能堡南方草原）、卡德威爾、雅典娜神像、附加能力、戰鬥文字 |
+| 2026-10-11 | 你的指示：素質和數值的縮寫（STR、ATK、HP…）、BOSS、MVP 照 RO 用英文，各語言都一樣（第 1 節第 3 條、第 6、8 節） |
