@@ -151,11 +151,11 @@
   → 距離 > 2 m：用導航網格走過去（跟自動追擊一樣）
   → 2 m 以內：停下、面向 NPC、送出 NpcInteract（02）
   → 伺服器送出對話節點 → 打開對話視窗（10）
-  → 結束：選了結束的選項、Esc、走開超過對話距離
+  → 結束：選了結束的選項，或按 Esc（10 的對話視窗）
 ```
 
 - 走過去的途中按移動鍵就取消。
-- 對話中可以轉鏡頭；移動就關閉對話（跟 RO 一樣，對話時不能做其他事）。
+- 對話中不能移動、攻擊、用技能（跟 RO 一樣：rAthena 在對話中不接受移動的要求）；可以轉鏡頭。
 
 ---
 
@@ -240,7 +240,7 @@
 
 **2026-10-11 加的（編號接在後面）：**
 8. 點選的範圍（M5）：怪物的碰撞半徑是 `body_radius_m`＋0.15 m；點在範圍邊緣也選得到。
-9. 點 NPC（M8）：太遠時自動走過去，2 m 內打開對話；走過去的途中按移動鍵就取消；移動就關閉對話。
+9. 點 NPC（M8）：太遠時自動走過去，2 m 內打開對話；走過去的途中按移動鍵就取消；對話中按移動鍵不會移動，Esc 結束對話。
 
 **給你看的截圖清單（M1）：** 鏡頭最近、最遠、最低、最高的四張；城牆邊轉鏡頭的連續截圖。
 
@@ -316,3 +316,4 @@
 - Godot 的射線偵測（滑鼠點選）：https://docs.godotengine.org/en/4.7/tutorials/physics/ray-casting.html
 - Godot 的形狀投射（ShapeCast3D，鏡頭碰牆）：https://docs.godotengine.org/en/4.7/classes/class_shapecast3d.html
 - RO 的 /noctrl（點一下就連續攻擊，02 已引用）：https://irowiki.org/wiki/Battle_mode
+- RO 對話中不能移動（`pc_cant_act` 包含正在跟 NPC 對話）：https://github.com/rathena/rathena/blob/master/src/map/pc.hpp
