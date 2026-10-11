@@ -18,6 +18,7 @@
 | 4 | Blender | 最新穩定版 | https://www.blender.org/download/ | 用 Python 腳本自動處理模型 |
 | 5 | VS Code | 最新版 | https://code.visualstudio.com/ | 直接開 Windows 資料夾，不要用 Remote-WSL |
 | 6 | Claude Code | 最新版 | PowerShell 執行：`irm https://claude.ai/install.ps1 \| iex` | 需要 Pro / Max 等付費方案 |
+| 7 | ffmpeg | 最新版 | PowerShell 執行：`winget install Gyan.FFmpeg` | 音訊管線用：背景音樂、音效轉 OGG、統一音量、做循環點（docs/04 第 8.4 節） |
 
 ### 1.2 VS Code 擴充
 
@@ -32,6 +33,7 @@
 | Mixamo | https://www.mixamo.com | 人形自動綁骨＋動作庫 | 免費（Adobe 帳號） |
 | Tripo | https://www.tripo3d.ai | AI 生成 3D 模型（主力） | 免費額度：每月約 300 credits、15 次下載，輸出不可商用 |
 | Sketchfab | https://sketchfab.com | 找 CC 授權的暫代素材 | 免費 |
+| Google Colab＋Google Drive | https://github.com/chousir/colab-ImageTo3D | 用 Hunyuan3D-2 從正面圖生成 3D 模型（docs/04 第 7、14 節） | Colab 免費 T4；**Google Drive 要留約 24 GB 給模型權重**（視角模型改用 SD 2.1 時約 18 GB） |
 
 不需要帳號：Poly Haven（https://polyhaven.com）、ambientCG（https://ambientcg.com），兩者都是 CC0 授權。
 
@@ -99,6 +101,7 @@ git lfs version
 godot --version        # 應顯示 4.7.2.stable...
 blender --version
 claude --version
+ffmpeg -version
 ```
 
 ---

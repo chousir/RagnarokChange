@@ -737,7 +737,7 @@ ID 是暫定，正式的 ID 由 05、07 定，資料用的 ID 照 03 的規則�
 
 2026-10-11 依提案修改了 00、01、03（授權登記表和守門測試的規則），各文件的狀態列都有註明。
 
-`docs/environment-setup.md` 不是規劃書，以下只是建議（照計畫，不直接修改）：
+`docs/environment-setup.md` 不是規劃書，以下只是建議（照計畫，不直接修改）。2026-10-11 已照你的指示加上 Colab（Drive 留約 24 GB）和 ffmpeg；Tripo 那一列和第 8 節的素材流程還沒改：
 - Tripo 的部分改成：3D 生成用 Colab 的 `chousir/colab-ImageTo3D`（Google Drive 要留約 24 GB 給模型權重）；Tripo 只是備案。
 - 加上 ffmpeg（你已經安裝，音訊管線用）。
 - 素材流程改成：先找現成的免費素材；要生成時給正面圖，用 Colab 生成，下載的檔案照 04 第 6.2 節的檔名投遞。
