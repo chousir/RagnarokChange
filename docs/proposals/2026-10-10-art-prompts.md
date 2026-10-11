@@ -1,6 +1,6 @@
 # 生圖提示詞（複製用）
 
-> 狀態：參考用（2026-10-10）
+> 狀態：參考用，仍在使用（2026-10-11 起：給 Gemini 生成正面圖、概念圖和 2D 素材；3D 用 Colab，流程在 04 第 7、14 節）
 > 用法和流程在 `2026-10-10-art-asset-guide.md`；本文件只放提示詞。編號（P-xx）跟指南對應。
 > 修訂：2026-10-11，南方草原地圖換新：P-61～P-73 換成新地標、P-74 和 P-75 拿掉、P-88～P-93 換掉、P-94 只在選雙圓塔城門時才用、P-120 的草原改寫；P-51 改成方形雙塔，原本的雙圓塔改名 P-51b
 > 修訂：2026-10-11（第三次），使用者全部回覆（`2026-10-11-replies.md`）：P-57b、P-101 改成雅典娜神像；Tripo 不用了，P-01～P-04 只在 Colab 自動產生的視角不好時才用
@@ -11,8 +11,8 @@
 ## 0. 使用方式
 
 1. 提示詞用英文，大部分生圖工具對英文的理解比較好。
-2. **給 Tripo 的視角圖**（P-11～P-78）：先生成正面（front），再把正面圖當參考圖，用 P-02（左）、P-03（後）、P-04（右）生成其他視角。每一段提示詞後面都要接上 **P-01**。
-   - **Tripo 免費方案沒有多視角，只要一張圖**：角色、怪物、武器只生成正面；道具、地標的提示詞本來就是 3/4 視角或正面一張。初心者（女）用 P-11F（頭髮盤起、不畫背包），背包另外用 P-28（見 `2026-10-10-review-round-2.md` 第 6.3 節）。
+2. **給 Colab 的正面圖**（P-11～P-78）：只要生成正面（front），每一段提示詞後面都要接上 **P-01**；左、後、右由 Colab 自動產生（04 第 7 節）。自動產生的視角不好時，才把正面圖當參考圖，用 P-02（左）、P-03（後）、P-04（右）生成，取代 Colab `in/` 裡的 `used-<類別>-<id>-left.jpg`、`-back.jpg`、`-right.jpg`。
+   - Colab 把輸入當成正面：提示詞開頭是 `Three-quarter view from slightly above of` 的（道具、小地標），給 Colab 時換成 `Orthographic FRONT view of`。角色的頭髮盤起或短髮、不揹武器和背包（04 第 14.2 節）：初心者（女）用 P-11F，背包另外用 P-28。
 3. 工具可以放參考圖的話，把對應的概念圖也放進去，顏色和細節會比較準。
 4. 工具有「負面提示詞」欄位的話，貼 **P-05**；生成武器、盾牌時，把 P-05 裡的 `weapon, shield` 拿掉。
 5. 比例：視角圖用 1:1（建築、橋用 16:9 也可以）；概念圖用 4:3；載入畫面用 16:9。
@@ -105,7 +105,7 @@ No ribbon, no hat, no weapon, no staff, no shield.
 
 ---
 
-### P-11F 初心者（女）`novice_female`——Tripo 免費方案用（單張正面）
+### P-11F 初心者（女）`novice_female`——給 Colab 的正面（建議用這個）
 
 跟 P-11 的差別：頭髮全部盤起來（脖子和肩膀完全露出來）、不畫背包（背包用 P-28 另外做）。後面接 P-01。
 
@@ -117,7 +117,7 @@ Outfit: a sleeveless off-white linen tunic reaching mid-thigh with a laced V-nec
 No backpack, no helmet, no hat, no weapon, no scabbard, no shield.
 ```
 
-### P-28 初心者的背包 `novice_backpack`（Tripo 免費方案用，單張 3/4 視角）
+### P-28 初心者的背包 `novice_backpack`（給 Colab 時把開頭換成正面，見第 0 節）
 
 後面接 P-01。
 
@@ -237,7 +237,7 @@ Use the attached image as the reference. Show exactly the same shield from the B
 
 ## 5. 怪物（正面，接 P-01；其他視角用 P-02～P-04）
 
-### P-41 果凍怪 `gelly`（不透明版本，給 Tripo 用）
+### P-41 果凍怪 `gelly`（不透明版本，給 Colab 用）
 
 ```text
 Orthographic FRONT view of an original small creature: a round jelly blob about 50 cm wide, shaped like a slightly squashed sphere with a flat bottom resting on the ground, a smooth glossy coral-pink surface, two small glossy black bead eyes, and a small puckered round mouth between them. Cute and friendly. Make it fully OPAQUE: a solid painted surface with no transparency, no visible inner core, no particles, no bubbles and no leaves inside.
@@ -757,9 +757,9 @@ A game title logo that reads "{GAME_TITLE}", ornate medieval fantasy lettering i
 
 ---
 
-## 9. Tripo 的文字轉 3D（沒有圖時）
+## 9. 沒有概念圖時（Gemini 生成正面圖）
 
-04 第 14.3 節的範本照樣可以用：
+先找現成的素材（04 第 5.3 節）。真的找不到，才用 Gemini 生成正面圖再丟進 Colab：範本在 04 第 14.3 節（後面接 P-01）。下面是舊的 Tripo 文字範本，`{OBJECT}`、`{MATERIALS}` 的例子照樣可以套進 04 的範本：
 
 ```text
 {OBJECT}, realistic medieval European fantasy style, game-ready 3D asset, PBR materials, worn and weathered, {MATERIALS}, about {SIZE} tall, single isolated object, no base, no text
