@@ -3,13 +3,14 @@
 > 狀態：參考用（2026-10-10）
 > 用法和流程在 `2026-10-10-art-asset-guide.md`；本文件只放提示詞。編號（P-xx）跟指南對應。
 > 修訂：2026-10-11，南方草原地圖換新：P-61～P-73 換成新地標、P-74 和 P-75 拿掉、P-88～P-93 換掉、P-94 只在選雙圓塔城門時才用、P-120 的草原改寫；P-51 改成方形雙塔，原本的雙圓塔改名 P-51b
+> 修訂：2026-10-11（第二次），王都地圖換新：P-51、P-83 改成雙圓塔平頂城垛（兩張地圖共用），P-51b、P-57、P-94 拿掉；P-56 改成細石柱；加了港口的 P-76～P-78、P-102；P-82、P-120、P-121 的王都改寫
 
 ---
 
 ## 0. 使用方式
 
 1. 提示詞用英文，大部分生圖工具對英文的理解比較好。
-2. **給 Tripo 的視角圖**（P-11～P-75）：先生成正面（front），再把正面圖當參考圖，用 P-02（左）、P-03（後）、P-04（右）生成其他視角。每一段提示詞後面都要接上 **P-01**。
+2. **給 Tripo 的視角圖**（P-11～P-78）：先生成正面（front），再把正面圖當參考圖，用 P-02（左）、P-03（後）、P-04（右）生成其他視角。每一段提示詞後面都要接上 **P-01**。
    - **Tripo 免費方案沒有多視角，只要一張圖**：角色、怪物、武器只生成正面；道具、地標的提示詞本來就是 3/4 視角或正面一張。初心者（女）用 P-11F（頭髮盤起、不畫背包），背包另外用 P-28（見 `2026-10-10-review-round-2.md` 第 6.3 節）。
 3. 工具可以放參考圖的話，把對應的概念圖也放進去，顏色和細節會比較準。
 4. 工具有「負面提示詞」欄位的話，貼 **P-05**；生成武器、盾牌時，把 P-05 裡的 `weapon, shield` 拿掉。
@@ -265,16 +266,10 @@ Orthographic FRONT view of an original creature: a chubby round bunny standing u
 
 ### 6.1 王都的地標（正面，其他視角用 P-02～P-04）
 
-#### P-51 `kronenberg_main_gate`（方形雙塔，建議；照 `building-kronenberg_south_field.jpg`，`concept-art-update` 第 11 節第 16 項）
+#### P-51 `kronenberg_main_gate`（南門，兩張地圖共用）
 
 ```text
-Orthographic FRONT view of a single medieval city gatehouse, isolated, seen from outside the city: two square towers of light-gray limestone blocks with flat crenellated tops, joined by a central gatehouse block with a crenellated top and a carved stone shield crest above the gate; a tall round-arched gate passage about 5 m wide and 7 m high with heavy dark wooden double doors and iron fittings; arrow slits and small arched windows; long deep-blue banners hanging on both towers. Total height about 22 m, width about 26 m. Short stubs of the adjoining city wall on both sides. Realistic, physically based materials with weathering and a little moss at the base.
-```
-
-#### P-51b `kronenberg_main_gate`（雙圓塔尖頂，第 16 項選另一個選項時才用）
-
-```text
-Orthographic FRONT view of a single medieval city gatehouse, isolated, seen from outside the city: two round towers of light-gray limestone blocks with crenellated tops and dark blue-gray slate conical roofs, joined by a central gatehouse block with a crenellated top; a tall round-arched gate passage about 5 m wide and 7 m high with heavy dark wooden double doors and iron fittings; small arched windows and arrow slits. Total height about 22 m, width about 26 m. Short stubs of the adjoining city wall on both sides. Realistic, physically based materials with weathering and a little moss at the base.
+Orthographic FRONT view of a single medieval city gatehouse, isolated, seen from outside the city: two massive round towers of light-gray limestone blocks with flat crenellated tops, joined by a central gatehouse block with a crenellated top and a carved stone shield crest above the gate; a tall round-arched gate passage about 5 m wide and 7 m high with heavy dark wooden double doors and iron fittings; arrow slits and small arched windows; a long deep-blue banner hanging on each tower. Total height about 22 m, width about 26 m. Short stubs of the adjoining city wall on both sides. Realistic, physically based materials with weathering and a little moss at the base.
 ```
 
 #### P-52 `kronenberg_crescent_gate`
@@ -306,13 +301,7 @@ Orthographic FRONT view of a single royal palace building, isolated, designed to
 #### P-56 `kronenberg_memorial_column`
 
 ```text
-Three-quarter view from slightly above of a single tall memorial column, isolated: a slender square stone pillar about 18 m tall standing on a stepped stone plinth, with simple carved bands and a small reddish-brown pointed cap on top. Light-gray limestone, weathered. Realistic, physically based materials.
-```
-
-#### P-57 `kronenberg_monument`
-
-```text
-Three-quarter view from slightly above of a single small town-square monument, isolated: a carved stone pedestal about 2 m tall carrying a bronze statue of a cloaked traveler raising a lantern, with green patina on the bronze. Total height about 4 m. Original design. Realistic, physically based materials.
+Three-quarter view from slightly above of a single slender memorial column, isolated: a thin round stone pillar about 8 m tall standing on a square stepped stone plinth, with simple carved bands and a small bronze finial on top. Light-gray limestone, weathered. Realistic, physically based materials.
 ```
 
 #### P-57b `kronenberg_temple_statue`（草稿：神像的樣子還沒定，`{STATUE}` 換成你的描述）
@@ -429,13 +418,33 @@ Three-quarter view of a single tall standing stone, isolated: a weathered sandst
 Three-quarter view of a single wooden crossroads signpost, isolated: a weathered wooden post about 2.2 m tall with three plank arrow signs pointing in different directions, the signs left blank with no text, a small iron cap on top, grass tufts at the base. Realistic, physically based materials.
 ```
 
+### 6.4 王都的港口（2026-10-11 加）
+
+#### P-76 `tall_ship`（正面是船的側面；背面用 P-03；左右用 P-02、P-04 看到的是船頭、船尾）
+
+```text
+Orthographic FRONT view of a single three-masted wooden sailing ship, isolated, seen from the side: a dark oak hull with a raised stern castle and a bowsprit, a row of small square windows at the stern, square sails on the fore and main masts and a triangular sail at the rear, off-white canvas sails, simple rope rigging, a small deep-blue pennant on the top of the main mast. About 30 m long with masts about 25 m tall. No crew, no flags with symbols. Realistic, physically based materials with weathering.
+```
+
+#### P-77 `harbor_crane`
+
+```text
+Three-quarter view of a single medieval wooden harbor crane, isolated: a heavy timber frame about 8 m tall on a square stone base, a large wooden treadwheel on one side, an angled wooden jib with a rope and an iron hook holding a rope cargo net with two crates. Realistic, physically based materials with wear.
+```
+
+#### P-78 `harbor_hall`（正面，其他視角用 P-02～P-04）
+
+```text
+Orthographic FRONT view of a single large half-timbered harbor guild hall, isolated: a ground floor of light-gray stone with wide round-arched openings, two upper floors of dark oak timber framing with cream lime plaster, a steep roof of orange-red clay tiles with two large triangular dormer windows, a small wooden balcony, and wooden crates and barrels by the entrance. About 20 m wide and 14 m tall. Realistic, physically based materials with weathering.
+```
+
 ---
 
 ## 7. 補充概念圖（放 `ConceptArt/`，不用接 P-01）
 
 這些是給我看的「目標樣貌」，可以有標題和標籤，背景隨意。共通開頭：
 
-### P-80 概念圖的共通開頭（後面接 P-81～P-100 其中一段）
+### P-80 概念圖的共通開頭（後面接 P-81～P-102 其中一段）
 
 ```text
 Concept art reference sheet for an original fantasy game. Realistic medieval European style with the look of a high-quality 3D render, physically based materials with wear and weathering, consistent morning daylight. Clean layout on a dark gray studio background with short English labels.
@@ -450,13 +459,13 @@ Title: "KRONENBERG ARCHITECTURE KIT - HALF-TIMBERED HOUSES". Show four town hous
 ### P-82 城牆和圓塔的模組
 
 ```text
-Title: "KRONENBERG WALL KIT". Show a straight city wall segment about 12 m tall with crenellations and a wall walk, a round tower with a dark blue-gray slate conical roof, a round tower with a flat crenellated top, a square gatehouse with a round-arched gate, and a lower outer wall about 10 m tall with a grassy strip between the two walls. Light-gray limestone blocks with moss at the base. Front and side views, with a 1.7 m human silhouette for scale.
+Title: "KRONENBERG WALL KIT". Show a straight city wall segment about 12 m tall with crenellations and a wall walk, a round tower with a dark blue-gray slate conical roof, a round tower with a flat crenellated top, a square gatehouse with a round-arched gate, and a harbor wall segment standing in the sea with heavy stone buttresses. Light-gray limestone blocks with moss at the base. Front and side views, with a 1.7 m human silhouette for scale.
 ```
 
-### P-83 東南主城門（方形雙塔；第 16 項選雙圓塔尖頂的話，把 `Two square towers with flat crenellated tops` 換成 `Two round towers with dark blue-gray slate conical roofs`，拿掉 shield crest）
+### P-83 南門（主城門）
 
 ```text
-Title: "KRONENBERG MAIN GATE". Turnaround of the city's main gate: front view from outside the city, back view from inside the city, and a side view. Two square towers with flat crenellated tops and a central arched gatehouse spanning a double wall, a carved stone shield crest above the gate, heavy wooden doors, long deep-blue banners. Include a 1.7 m human silhouette for scale.
+Title: "KRONENBERG MAIN GATE". Turnaround of the city's main gate: front view from outside the city, back view from inside the city, and a side view. Two massive round towers with flat crenellated tops and a central arched gatehouse, a carved stone shield crest above the gate, heavy wooden doors, a long deep-blue banner on each tower. Include a 1.7 m human silhouette for scale.
 ```
 
 ### P-84 新月形城門和王室旗幟
@@ -519,12 +528,6 @@ Title: "COAST AND BEACH". A sandy beach between a desert and a blue sea: a curve
 Title: "MEADOW PROPS". A wooden crossroads signpost with three blank plank signs, a round fieldstone well with a small shingle roof and a bucket, logs used as benches, clusters of dry grass, a few broadleaf shrubs. Each object shown separately in a three-quarter view with approximate sizes.
 ```
 
-### P-94 南門外的氣氛圖（只有選雙圓塔尖頂的城門才要，`concept-art-update` 第 11 節第 16 項）
-
-```text
-Environment concept painting, no text: early morning just outside the main gate of a walled medieval city. The gate has two round towers with dark slate conical roofs and a central arched gatehouse; blue banners hang on the wall. A dirt road leads south through rolling green meadows with wildflowers, scattered pine and broadleaf trees, light morning mist, the sun low in the east. Realistic, cinematic, wide 16:9 composition.
-```
-
 ### P-95 頭飾
 
 ```text
@@ -574,6 +577,12 @@ Title: "TEMPLE STATUE". The statue in the center of the cathedral square: {STATU
 ```
 
 `{STATUE}` 同 P-57b。
+
+### P-102 王都的港口（2026-10-11 加）
+
+```text
+Title: "KRONENBERG HARBOR". A stone quay along the sea inside the city walls: half-timbered warehouses, a large guild hall with an orange-red tile roof, a wooden treadwheel crane, crates, barrels and hand carts on the quay, three long wooden piers reaching into the sea, two three-masted sailing ships and a few rowboats moored at the piers, and a harbor wall with stone buttresses standing in the water ending in a large round tower with a flat crenellated top. One wide view from above at an angle, plus small views of the pier, the crane and a ship.
+```
 
 ## 8. 2D 遊戲素材
 
@@ -732,13 +741,13 @@ Wide cinematic landscape painting for a game loading screen, 16:9, 2560x1440, re
 ```
 
 `{SCENE}`：
-- 王都：`an aerial view of a walled city on a rocky island in a calm lake: light-gray limestone walls with round towers and dark slate conical roofs, a twin-towered main gate, a Gothic cathedral with a tall spire on the west side, a castle and a copper-domed palace on the north side, half-timbered houses with dark roofs, thin morning mist and sunlight from the east`
+- 王都：`an aerial view of a walled harbor city at the mouth of a river by the sea: light-gray limestone walls with round towers, some with dark slate conical roofs and some with flat crenellated tops, a twin-towered main gate on the south side, a Gothic cathedral with a tall spire on the west side, a castle and a copper-domed palace on a seaside hill in the north-east, a stone quay with wooden piers and two three-masted sailing ships on the east side, a river with a stone bridge along the north side, half-timbered houses with dark roofs, thin morning mist and sunlight from the sea`
 - 南方草原：`rolling green meadows outside the square twin-towered gate of a walled city, dirt paths branching between groves of broadleaf trees, a camp of canvas tents and training dummies near the wall, dark pine forests on rocky terraces to the west, a blue sea bay with a small fishing pier and a long multi-arched stone bridge crossing the sea to the east, pale golden desert with standing stones in the distance, light morning mist`
 
 ### P-121 標題畫面（遊戲名稱決定後才用）
 
 ```text
-A wide cinematic key art for the title screen of an original fantasy game, 16:9, 2560x1440: four young women adventurers (a novice with a backpack, a swordswoman in a mustard cape, a rogue in an ochre jacket, an acolyte in a cream capelet) standing on a hill at sunrise looking toward a walled city on a lake with a copper-domed palace and a Gothic cathedral. Realistic painted style. Leave clear space at the top center for a logo. No text.
+A wide cinematic key art for the title screen of an original fantasy game, 16:9, 2560x1440: four young women adventurers (a novice with a backpack, a swordswoman in a mustard cape, a rogue in an ochre jacket, an acolyte in a cream capelet) standing on a hill at sunrise looking toward a walled harbor city by the sea with a copper-domed palace, a Gothic cathedral and tall sailing ships. Realistic painted style. Leave clear space at the top center for a logo. No text.
 ```
 
 標誌：
