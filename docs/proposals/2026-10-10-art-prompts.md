@@ -2,6 +2,7 @@
 
 > 狀態：參考用（2026-10-10）
 > 用法和流程在 `2026-10-10-art-asset-guide.md`；本文件只放提示詞。編號（P-xx）跟指南對應。
+> 修訂：2026-10-11，南方草原地圖換新：P-61～P-73 換成新地標、P-74 和 P-75 拿掉、P-88～P-93 換掉、P-94 只在選雙圓塔城門時才用、P-120 的草原改寫；P-51 改成方形雙塔，原本的雙圓塔改名 P-51b
 
 ---
 
@@ -264,7 +265,13 @@ Orthographic FRONT view of an original creature: a chubby round bunny standing u
 
 ### 6.1 王都的地標（正面，其他視角用 P-02～P-04）
 
-#### P-51 `kronenberg_main_gate`
+#### P-51 `kronenberg_main_gate`（方形雙塔，建議；照 `building-kronenberg_south_field.jpg`，`concept-art-update` 第 11 節第 16 項）
+
+```text
+Orthographic FRONT view of a single medieval city gatehouse, isolated, seen from outside the city: two square towers of light-gray limestone blocks with flat crenellated tops, joined by a central gatehouse block with a crenellated top and a carved stone shield crest above the gate; a tall round-arched gate passage about 5 m wide and 7 m high with heavy dark wooden double doors and iron fittings; arrow slits and small arched windows; long deep-blue banners hanging on both towers. Total height about 22 m, width about 26 m. Short stubs of the adjoining city wall on both sides. Realistic, physically based materials with weathering and a little moss at the base.
+```
+
+#### P-51b `kronenberg_main_gate`（雙圓塔尖頂，第 16 項選另一個選項時才用）
 
 ```text
 Orthographic FRONT view of a single medieval city gatehouse, isolated, seen from outside the city: two round towers of light-gray limestone blocks with crenellated tops and dark blue-gray slate conical roofs, joined by a central gatehouse block with a crenellated top; a tall round-arched gate passage about 5 m wide and 7 m high with heavy dark wooden double doors and iron fittings; small arched windows and arrow slits. Total height about 22 m, width about 26 m. Short stubs of the adjoining city wall on both sides. Realistic, physically based materials with weathering and a little moss at the base.
@@ -338,57 +345,58 @@ Three-quarter view from slightly above of a single round stone water well, isola
 
 ### 6.3 南方草原的地標
 
-#### P-61 `standing_stone_a`、`_b`、`_c`（3/4 視角，三個各生成一次，換掉 {變化}）
+2026-10-11 依新的草原地圖整段換掉（上一版的 P-61～P-75 作廢）。水井用 P-60。
+
+#### P-61 `sea_bridge_span`（正面是「從側邊看得到拱」的那一面；背面用 P-03；左右用 P-02、P-04 看到的是橋面的兩端）
 
 ```text
-Three-quarter view of a single ancient standing stone, isolated: a weathered blue-gray stone slab, slightly leaning, with rough chipped edges, lichen and moss patches and faint worn carved lines. {VARIANT}. Realistic, physically based materials.
+Orthographic FRONT view of a single straight section of a large stone sea bridge, isolated, seen from the side so the arch is visible: one wide round arch on two massive square piers with pointed cutwaters, a flat roadway about 8 m wide with low crenellated stone parapets on both sides, about 20 m long and 12 m tall from the pier base to the parapet. Weathered light-gray limestone blocks, dark wet stains and barnacles near the base of the piers. The section is designed to repeat, so both ends are cut flat. Realistic, physically based materials.
+```
+
+#### P-62 `bridge_statue`
+
+```text
+Three-quarter view of a single small stone statue on a square pedestal, isolated: a hooded guardian figure holding a lantern in front of its chest, weathered light-gray limestone with lichen, about 2.5 m tall in total. Original design. Realistic, physically based materials.
+```
+
+#### P-63 `fishing_hut`（正面，其他視角用 P-02～P-04；要兩種就換掉 {VARIANT} 生成兩次）
+
+```text
+Orthographic FRONT view of a single small wooden fishing hut, isolated: walls of weathered gray-brown vertical planks on a low fieldstone base, a steep roof of dark wooden shingles, a small window with wooden shutters, a plank door, fishing nets and cork floats hanging on the wall, a few crates and a coiled rope by the door. {VARIANT}. About 6 m by 5 m. Realistic, physically based materials with salt weathering.
 ```
 
 `{VARIANT}` 依序換成：
-- a：`A tall narrow slab about 5 m tall with a pointed top`
-- b：`A broad slab about 3.5 m tall with a flat top and a long crack`
-- c：`A short thick stone about 2.5 m tall with a broken top`
+- a：`One story with a small lean-to shed on one side`
+- b：`Two stories, the upper floor slightly overhanging, with an outside wooden staircase`
 
-#### P-62 `broken_column`
+#### P-64 `rowboat`
 
 ```text
-Three-quarter view of a single broken ancient stone column, isolated: a square base, a fluted round shaft, and a jagged broken top, about 3 m tall, weathered gray stone with moss. Realistic, physically based materials.
+Three-quarter view from slightly above of a single small wooden rowboat, isolated: about 4 m long, overlapping weathered planks painted faded blue-green on the outside, a bare wood interior with two bench seats, a pair of oars resting inside, and a coiled rope at the bow. Realistic, physically based materials.
 ```
 
-#### P-63 `ruined_wall`
+#### P-65 `sailboat`
 
 ```text
-Three-quarter view of a single short ruined wall segment, isolated: stacked rough stone blocks about 6 m long and 2 m tall, with missing blocks and a crumbling uneven top, moss and grass tufts at the base. Realistic, physically based materials.
+Three-quarter view of a single small wooden fishing sailboat, isolated, designed to be seen from a distance: about 8 m long, a dark wooden hull, one mast with a single off-white triangular sail, simple rigging. Simple, clear shapes. Realistic, physically based materials.
 ```
 
-#### P-64 `glow_crystal_cluster`
+#### P-66 `net_drying_rack`
 
 ```text
-Three-quarter view of a single cluster of tall crystals growing from a rocky base, isolated: about 2 m tall, with the largest crystal in the center and smaller ones around it, pale yellow quartz-like crystals. Make the crystals OPAQUE and matte pale yellow, with no glow and no transparency (the glow is added in the game engine). Realistic.
+Three-quarter view of a single wooden net drying rack, isolated: two pairs of crossed wooden poles about 2 m tall joined by a horizontal pole about 3 m long, with a brown fishing net draped over it and a few cork floats, a wooden basket on the ground. Realistic, physically based materials.
 ```
 
-#### P-65 `ancient_hollow_tree`（正面，其他視角用 P-02～P-04）
+#### P-67 `training_dummy`
 
 ```text
-Orthographic FRONT view of a single huge ancient broadleaf tree, isolated: a very thick gnarled trunk with exposed twisting roots spreading on the ground, a large hollow opening at the base of the trunk that is dark inside (a warm glow is added in the game engine), a wide dense canopy of green leaves, and several large red-brown mushrooms at the base. About 18 m tall with a canopy about 20 m wide. Realistic, physically based materials.
+Three-quarter view of a single combat training dummy, isolated: a thick wooden post about 1.8 m tall set in the ground, a horizontal wooden crossbar for arms, a body of straw bundled with rope and wrapped in torn burlap, a burlap sack head, sword cuts and patches on the burlap. Realistic, physically based materials with wear.
 ```
 
-#### P-66 `windmill`（正面，其他視角用 P-02～P-04）
+#### P-68 `weapon_rack`
 
 ```text
-Orthographic FRONT view of a single small farm windmill, isolated: a round fieldstone base, an upper body of weathered wooden planks, a conical cap of dark wooden shingles, and four lattice sails covered with off-white canvas arranged in an X shape, with a small wooden door at the base. About 12 m tall. Realistic, physically based materials.
-```
-
-#### P-67 `farmhouse`（正面，其他視角用 P-02～P-04）
-
-```text
-Orthographic FRONT view of a single small farmhouse, isolated: lower walls of fieldstone, upper walls of timber planks, a steep roof of dark wooden shingles with a stone chimney, small windows with wooden shutters, and a wooden door with a small porch. About 10 m by 7 m. Realistic, physically based materials with weathering.
-```
-
-#### P-68 `stone_arch_bridge`（正面是「從側邊看得到拱」的那一面；背面用 P-03；左右用 P-02、P-04 看到的是橋頭）
-
-```text
-Orthographic FRONT view of a single stone footbridge, isolated, seen from the side so the arch is visible: a single round arch, about 20 m long and 5 m wide, with low stone parapets along both sides and square stone posts at both ends, weathered gray fieldstone with moss. Realistic, physically based materials.
+Three-quarter view of a single wooden weapon rack, isolated: an A-frame of dark oak about 2.5 m long and 1.5 m tall, holding six wooden practice swords upright and two round wooden practice shields leaning against one end. Realistic, physically based materials with wear.
 ```
 
 #### P-69 `canvas_tent`
@@ -397,10 +405,10 @@ Orthographic FRONT view of a single stone footbridge, isolated, seen from the si
 Three-quarter view of a single canvas A-frame tent, isolated: about 3 m long and 2 m tall, stained beige canvas on wooden poles, guy ropes and wooden stakes, front flaps tied open. Realistic, physically based materials.
 ```
 
-#### P-70 `covered_wagon`
+#### P-70 `training_ring_frame`
 
 ```text
-Three-quarter view of a single covered wagon, isolated: about 4.5 m long, a wooden wagon bed, four large wooden spoked wheels with iron rims, an arched off-white canvas cover stretched over wooden hoops, a front driver's bench and a wooden tongue. Realistic, physically based materials with wear.
+Three-quarter view of a single wooden training frame, isolated: two sturdy wooden posts about 3 m tall joined by a crossbeam about 4 m long, with two iron rings and two leather sandbags hanging from chains on the crossbeam. Realistic, physically based materials with wear.
 ```
 
 #### P-71 `campfire`
@@ -409,28 +417,16 @@ Three-quarter view of a single covered wagon, isolated: about 4.5 m long, a wood
 Three-quarter view from above of a single campfire, isolated: a ring of fist-sized stones about 1.2 m wide with stacked split logs and ash in the center. No flames and no smoke (the fire is added in the game engine). Realistic, physically based materials.
 ```
 
-#### P-72 `menhir`
+#### P-72 `desert_menhir`
 
 ```text
-Three-quarter view of a single very tall leaning standing stone, isolated: a weathered gray granite monolith about 8 m tall with a pointed top, with two smaller leaning stones at its base, moss and grass tufts. Realistic, physically based materials.
+Three-quarter view of a single tall standing stone, isolated: a weathered sandstone monolith about 6 m tall with a rounded leaning top, wind-carved horizontal grooves, warm ochre and tan colors, a few smaller stones and dry grass tufts at its base. Realistic, physically based materials.
 ```
 
-#### P-73 `glow_bulb_plant`
+#### P-73 `signpost`
 
 ```text
-Three-quarter view of a single cluster of fantasy plants, isolated: about 1.5 m tall, thick curved green stems carrying large round pale-teal bulb-shaped flower pods with layered petals, and broad dark-green leaves at the base. The bulbs are OPAQUE with no glow (the glow is added in the game engine). Realistic.
-```
-
-#### P-74 `glow_lily`
-
-```text
-Three-quarter view of a single fantasy lily plant, isolated: about 1 m tall, a tall closed pale yellow-green flower bud on a slender stem and long slender leaves. OPAQUE with no glow (the glow is added in the game engine). Realistic.
-```
-
-#### P-75 `mushroom_cluster`
-
-```text
-Three-quarter view of a single cluster of five large forest mushrooms, isolated: about 60 cm tall, red-brown caps with pale spots and thick cream stems, on a small mossy base. Realistic.
+Three-quarter view of a single wooden crossroads signpost, isolated: a weathered wooden post about 2.2 m tall with three plank arrow signs pointing in different directions, the signs left blank with no text, a small iron cap on top, grass tufts at the base. Realistic, physically based materials.
 ```
 
 ---
@@ -457,10 +453,10 @@ Title: "KRONENBERG ARCHITECTURE KIT - HALF-TIMBERED HOUSES". Show four town hous
 Title: "KRONENBERG WALL KIT". Show a straight city wall segment about 12 m tall with crenellations and a wall walk, a round tower with a dark blue-gray slate conical roof, a round tower with a flat crenellated top, a square gatehouse with a round-arched gate, and a lower outer wall about 10 m tall with a grassy strip between the two walls. Light-gray limestone blocks with moss at the base. Front and side views, with a 1.7 m human silhouette for scale.
 ```
 
-### P-83 東南主城門
+### P-83 東南主城門（方形雙塔；第 16 項選雙圓塔尖頂的話，把 `Two square towers with flat crenellated tops` 換成 `Two round towers with dark blue-gray slate conical roofs`，拿掉 shield crest）
 
 ```text
-Title: "KRONENBERG MAIN GATE". Turnaround of the city's main gate: front view from outside the city, back view from inside the city, and a side view. Two round towers with dark blue-gray slate conical roofs and a central arched gatehouse spanning a double wall, heavy wooden doors, blue banners. Include a 1.7 m human silhouette for scale.
+Title: "KRONENBERG MAIN GATE". Turnaround of the city's main gate: front view from outside the city, back view from inside the city, and a side view. Two square towers with flat crenellated tops and a central arched gatehouse spanning a double wall, a carved stone shield crest above the gate, heavy wooden doors, long deep-blue banners. Include a 1.7 m human silhouette for scale.
 ```
 
 ### P-84 新月形城門和王室旗幟
@@ -487,43 +483,43 @@ Title: "CASTLE AND PALACE". The royal castle and the copper-domed palace as seen
 Title: "KRONENBERG STREET PROPS". A market stall with a striped canvas roof, a wrought-iron street lamp, a stone water well with a wooden roof, a wooden bench, oak barrels, wooden crates, a hand cart, stone flower planters, and a wooden notice board. Each object shown separately in a three-quarter view with approximate sizes.
 ```
 
-### P-88 水晶遺跡
+### P-88 劍士訓練營地
 
 ```text
-Title: "CRYSTAL RUINS KIT". Separate pieces: three weathered blue-gray standing stones of different shapes, a broken fluted column, a short ruined stone wall, and a cluster of pale yellow crystals that glow softly. Below, the pieces assembled into a ring-shaped ruin in a forest clearing, seen from above at an angle.
+Title: "SWORDSMAN TRAINING CAMP". An open dirt clearing outside a city wall with about ten canvas A-frame tents, five straw training dummies on wooden posts, a wooden weapon rack with practice swords and shields, a wooden training frame with hanging rings and sandbags, two stone campfire rings and logs used as benches. Separate three-quarter views of each object, plus an overview of the whole camp from above at an angle.
 ```
 
-### P-89 發光樹洞的老樹
+### P-89 漁村和碼頭
 
 ```text
-Title: "ANCIENT HOLLOW TREE". A huge ancient broadleaf tree with a very thick gnarled trunk, exposed roots and a hollow at the base that glows with warm orange light from inside, large red-brown mushrooms around the roots, pine trees behind. Front view and side view in daylight, plus a close-up of the glowing hollow.
+Title: "FISHING HAMLET AND PIER". Four or five small wooden fishing huts with shingle roofs on a low earthen terrace beside a sea bay, an L-shaped wooden pier on posts, fishing nets drying on racks, a small rowboat tied to the pier and two small sailboats in the bay. Separate views of a hut, the pier and the boats, plus an overview from above at an angle.
 ```
 
-### P-90 風車農場
+### P-90 跨海的大橋
 
 ```text
-Title: "WINDMILL FARM". A small farm windmill with a stone base and canvas lattice sails, a farmhouse of stone and timber with a shingle roof, split-rail wooden fences, and crop fields in different growth stages. Each building in front and side views, plus an overview of the farm beside a river.
+Title: "SEA BRIDGE". A long multi-arched stone bridge crossing the sea from a grassy shore toward a distant city: wide round arches on massive piers, a roadway about 8 m wide with low crenellated parapets, a small hooded guardian statue with a lantern at the near end. Side view, a view from the near end looking along the roadway, and a close-up of the statue, with a 1.7 m human silhouette for scale.
 ```
 
-### P-91 石拱橋
+### P-91 沙漠的邊緣
 
 ```text
-Title: "STONE ARCH BRIDGE". A single-arch stone footbridge about 20 m long and 5 m wide crossing a small river, with low parapets and square posts at both ends. Side view, top view and a three-quarter view with a 1.7 m human silhouette for scale.
+Title: "MEADOW TO DESERT EDGE". Green grassy terraces ending in low eroded earth cliffs that drop onto pale golden sand; a flat-topped sandstone mesa with steep sides, tall weathered sandstone standing stones, scattered rocks, dry grass tufts and rolling sand dunes in the distance. One wide view plus small views of the cliff edge, the mesa and a standing stone.
 ```
 
-### P-92 商隊營地
+### P-92 海岸
 
 ```text
-Title: "CARAVAN CAMP". A round camp enclosed by a split-rail wooden fence: two canvas tents, two covered wagons, a stone campfire ring, wooden crates, barrels, sacks and a hitching post. Separate three-quarter views of each object, plus an overview from above at an angle.
+Title: "COAST AND BEACH". A sandy beach between a desert and a blue sea: a curved sand spit, low sandy cliffs, dark wet rocks and small rocky islets in the water, gentle waves with white foam along the shore. Morning light. One wide view plus a close-up of the waterline.
 ```
 
-### P-93 立石、發光植物、香菇
+### P-93 草原的小東西
 
 ```text
-Title: "MEADOW LANDMARKS". A very tall leaning standing stone about 8 m tall with two smaller stones; a cluster of fantasy plants with large pale-teal bulb pods that glow softly; a single tall pale yellow-green lily bud that glows softly; clusters of large red-brown forest mushrooms. Three-quarter views with a 1.7 m human silhouette for scale.
+Title: "MEADOW PROPS". A wooden crossroads signpost with three blank plank signs, a round fieldstone well with a small shingle roof and a bucket, logs used as benches, clusters of dry grass, a few broadleaf shrubs. Each object shown separately in a three-quarter view with approximate sizes.
 ```
 
-### P-94 南門外的氣氛圖
+### P-94 南門外的氣氛圖（只有選雙圓塔尖頂的城門才要，`concept-art-update` 第 11 節第 16 項）
 
 ```text
 Environment concept painting, no text: early morning just outside the main gate of a walled medieval city. The gate has two round towers with dark slate conical roofs and a central arched gatehouse; blue banners hang on the wall. A dirt road leads south through rolling green meadows with wildflowers, scattered pine and broadleaf trees, light morning mist, the sun low in the east. Realistic, cinematic, wide 16:9 composition.
@@ -737,7 +733,7 @@ Wide cinematic landscape painting for a game loading screen, 16:9, 2560x1440, re
 
 `{SCENE}`：
 - 王都：`an aerial view of a walled city on a rocky island in a calm lake: light-gray limestone walls with round towers and dark slate conical roofs, a twin-towered main gate, a Gothic cathedral with a tall spire on the west side, a castle and a copper-domed palace on the north side, half-timbered houses with dark roofs, thin morning mist and sunlight from the east`
-- 南方草原：`rolling green meadows outside the twin-towered gate of a walled city, a dirt road winding south, a stone arch bridge over a small river, a windmill and fenced fields in the distance, a ring of ancient standing stones at the edge of a forest, wildflowers and light morning mist`
+- 南方草原：`rolling green meadows outside the square twin-towered gate of a walled city, dirt paths branching between groves of broadleaf trees, a camp of canvas tents and training dummies near the wall, dark pine forests on rocky terraces to the west, a blue sea bay with a small fishing pier and a long multi-arched stone bridge crossing the sea to the east, pale golden desert with standing stones in the distance, light morning mist`
 
 ### P-121 標題畫面（遊戲名稱決定後才用）
 
