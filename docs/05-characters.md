@@ -77,7 +77,7 @@ CharacterView（Node3D，客戶端的實體視圖，01 第 8 節）
 
 ### 3.2 骨架
 
-- 骨頭名稱用 Godot SkeletonProfileHumanoid 的名稱（Hips、Spine、Chest、UpperChest、Neck、Head、LeftUpperArm、LeftHand、LeftUpperLeg、LeftFoot 等）。匯入時開啟「重新命名骨頭」，所以不管骨架來自 Mixamo、Tripo 還是 Quaternius，名稱都一樣（04-D13）。
+- 骨頭名稱用 Godot SkeletonProfileHumanoid 的名稱（Hips、Spine、Chest、UpperChest、Neck、Head、LeftUpperArm、LeftHand、LeftUpperLeg、LeftFoot 等）。匯入時開啟「重新命名骨頭」，所以不管骨架來自 Mixamo、Blender Rigify 還是 Quaternius，名稱都一樣（04-D12、04-D13）。
 - 每個職業身體各自綁一副骨架，骨頭長度可以不同；動作都經過重定向，所以每副骨架都能播同一組動作。
 - 頭和頭髮只綁在 Neck、Head 兩根骨頭上（04 第 9.1 節），所以可以套到任何一副身體骨架上。
 
