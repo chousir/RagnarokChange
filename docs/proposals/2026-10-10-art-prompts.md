@@ -3,6 +3,7 @@
 > 狀態：參考用（2026-10-10）
 > 用法和流程在 `2026-10-10-art-asset-guide.md`；本文件只放提示詞。編號（P-xx）跟指南對應。
 > 修訂：2026-10-11，南方草原地圖換新：P-61～P-73 換成新地標、P-74 和 P-75 拿掉、P-88～P-93 換掉、P-94 只在選雙圓塔城門時才用、P-120 的草原改寫；P-51 改成方形雙塔，原本的雙圓塔改名 P-51b
+> 修訂：2026-10-11（第三次），使用者全部回覆（`2026-10-11-replies.md`）：P-57b、P-101 改成雅典娜神像；Tripo 不用了，P-01～P-04 只在 Colab 自動產生的視角不好時才用
 > 修訂：2026-10-11（第二次），王都地圖換新：P-51、P-83 改成雙圓塔平頂城垛（兩張地圖共用），P-51b、P-57、P-94 拿掉；P-56 改成細石柱；加了港口的 P-76～P-78、P-102；P-82、P-120、P-121 的王都改寫
 
 ---
@@ -304,15 +305,13 @@ Orthographic FRONT view of a single royal palace building, isolated, designed to
 Three-quarter view from slightly above of a single slender memorial column, isolated: a thin round stone pillar about 8 m tall standing on a square stepped stone plinth, with simple carved bands and a small bronze finial on top. Light-gray limestone, weathered. Realistic, physically based materials.
 ```
 
-#### P-57b `kronenberg_temple_statue`（草稿：神像的樣子還沒定，`{STATUE}` 換成你的描述）
+#### P-57b `kronenberg_temple_statue`（雅典娜神像，2026-10-11 定案）
 
-正面，其他視角用 P-02～P-04；後面接 P-01。
+正面；Colab 會自動產生其他視角。
 
 ```text
-Orthographic FRONT view of a single statue on a pedestal, isolated: {STATUE}. The statue stands on a three-tier round pedestal of light-gray limestone with a carved original crest, about 4 m wide at the base; total height about 7 m. Weathered stone with light moss in the cracks. Original design. Realistic, physically based materials.
+Orthographic FRONT view of a single statue on a pedestal, isolated: a white marble statue of Athena, the ancient Greek warrior goddess, standing upright, wearing a crested Corinthian helmet pushed back on her head, a long flowing peplos robe with a breastplate, holding a tall spear upright in her right hand and resting a large round shield against her left side, calm and dignified face. The statue stands on a three-tier round pedestal of light-gray limestone with a carved original crest, about 4 m wide at the base; total height about 7 m. Weathered stone with light moss in the cracks. Realistic, physically based materials.
 ```
-
-`{STATUE}` 的建議（原創）：`a white marble statue of a robed goddess with a pair of folded feathered wings on her back, holding a lantern in both hands in front of her chest, calm face looking slightly downward`
 
 #### P-58 `market_stall`
 
@@ -573,10 +572,10 @@ Title: "HUD MOCKUP". A 1920x1080 game screenshot mockup of a heads-up display ov
 ### P-101 大教堂廣場的神像
 
 ```text
-Title: "TEMPLE STATUE". The statue in the center of the cathedral square: {STATUE}, on a three-tier round limestone pedestal with a carved original crest, total height about 7 m. Front, side and back views, plus one view of the statue in front of a Gothic cathedral facade in morning light. Include a 1.7 m human silhouette for scale.
+Title: "STATUE OF ATHENA". The statue in the center of the cathedral square: {STATUE}, on a three-tier round limestone pedestal with a carved original crest, total height about 7 m. Front, side and back views, plus one view of the statue in front of a Gothic cathedral facade in morning light. Include a 1.7 m human silhouette for scale.
 ```
 
-`{STATUE}` 同 P-57b。
+`{STATUE}`：`a white marble statue of Athena, the ancient Greek warrior goddess, with a crested Corinthian helmet, a peplos robe with a breastplate, a tall spear in her right hand and a large round shield at her left side`
 
 ### P-102 王都的港口（2026-10-11 加）
 

@@ -1,8 +1,10 @@
 # 音樂、音效與任務（提案）
 
 > 狀態：提案，待你確認（2026-10-11）
+> **2026-10-11：使用者已全部回覆。跟本文不同的地方以 `2026-10-11-replies.md` 為準（第 8 節）。**
 > 建立日期：2026-10-11
 > 依據：你在對話裡的問題（地圖背景音樂你生成、其他音效我找；用冒險公會服務員做任務：學初心者技能、打怪）；10-D10（音效只預留）；06-D13、06-D14（轉職 NPC、任務技能之後才做）；03 第 4.1 節（`data/npcs/` 已預留）
+> 修訂：2026-10-11，使用者全部回覆（`2026-10-11-replies.md` 第 8 節）：音樂工具是 Gemini（付費方案），第 2.3、2.5 節改成 Gemini 的檔名和提示詞
 > 範圍：只有規劃，**不改程式**。你確認第 6 節後，由本機的 Claude Code 照第 5 節改規劃書；程式等到對應的批次再做。
 
 ---
@@ -43,15 +45,15 @@
 - 檔名照 04-D06：`<來源>-<類別>-<名稱>.<副檔名>`，類別加上 `music`、`ambience`、`sfx`。
 - 背景音樂的名稱用地圖 ID 或畫面的名稱：
 
-| 檔名（以 Suno 為例） | 用在 | 第一版 |
+| 檔名 | 用在 | 第一版 |
 |---|---|---|
-| `suno-music-kronenberg.wav` | 王都 | ✔ |
-| `suno-music-kronenberg_south_field.wav` | 南方草原 | ✔ |
-| `suno-music-title.wav` | 標題、登入畫面 | 之後（M8～M9） |
-| `suno-music-character_select.wav` | 選角、創角 | 之後（M8～M9） |
+| `gemini-music-kronenberg.mp3` | 王都 | ✔ |
+| `gemini-music-kronenberg_south_field.mp3` | 南方草原 | ✔ |
+| `gemini-music-title.mp3` | 標題、登入畫面 | 之後（M8～M9） |
+| `gemini-music-character_select.mp3` | 選角、創角 | 之後（M8～M9） |
 
-- `suno` 換成你用的工具名稱（小寫英文）。同一首有好幾版想給我比較，就加 `_a`、`_b`：`suno-music-kronenberg_a.wav`。
-- 格式：能下載 WAV 就用 WAV；不行就用 MP3 的最高音質。
+- 同一首有好幾版想給我比較，就加 `_a`、`_b`：`gemini-music-kronenberg_a.mp3`。
+- 格式：Gemini 只能下載 MP3，直接給 MP3（不要用有封面的 MP4）。
 - 一起告訴我：工具和方案（免費或付費）、歌曲頁面的網址、你用的提示詞。我記在授權登記表和 `process.json`（04 第 6 節）。
 - 用中文檔名丟進來也可以，我照規則改名、問你缺的資訊。
 
@@ -69,38 +71,34 @@
 - 地圖的音樂和環境音是表現層，放在客戶端的 `map.tscn`（地圖的音訊節點：音樂 ID、環境音的發聲點）；伺服器不讀（01-D07）。換圖時音樂淡出、淡入約 1 秒；兩張地圖用同一首時就繼續播。
 - 環境音的發聲點：港口和草原的海邊（海浪、海鷗）、北門外的河、城裡的廣場（人聲）、訓練營地（營火）、松樹林（鳥）、沙漠（風），範圍外淡出。
 
-### 2.5 背景音樂的提示詞
+### 2.5 背景音樂的提示詞（Gemini）
 
-- 開「純音樂（Instrumental）」；工具有「排除風格」欄位的話，貼「排除」那一行。
-- 長度 2 分 30 秒～3 分 30 秒；開頭不要太長的前奏（循環時會一直聽到）。
-- 不要放任何遊戲、作曲家、歌手的名字（工具通常也會擋）。
+- Gemini 沒有「風格」「排除」欄位，整段貼進對話就好；長度選最長的模式（2～3 分鐘）。
+- 開頭不要太長的前奏（循環時會一直聽到）；不要放任何遊戲、作曲家、歌手的名字。
+- 不滿意可以接著說「同樣的風格，旋律再明亮一點」之類的修改。
 
 #### M-01 `kronenberg`（王都）
 
 ```text
-Style: medieval fantasy town theme for a peaceful harbor capital city, warm and cheerful, lute and celtic harp, wooden flute melody, pizzicato strings, soft accordion, light hand percussion and tambourine, gentle 3/4 waltz feel, 96 BPM, major key, nostalgic and welcoming, steady loop-friendly structure without a big ending, instrumental, no vocals
-Exclude: vocals, electronic, synth, modern drums, rock
+Create an instrumental track, about 3 minutes long, with no vocals. A medieval fantasy town theme for a peaceful harbor capital city: warm and cheerful, a lute and a celtic harp, a wooden flute melody, pizzicato strings, a soft accordion, and light hand percussion with tambourine. Gentle 3/4 waltz feel, around 96 BPM, major key, nostalgic and welcoming. Keep a steady structure that can loop, with a short intro and no big ending. No electronic sounds, synths, modern drums or rock instruments.
 ```
 
 #### M-02 `kronenberg_south_field`（南方草原）
 
 ```text
-Style: bright adventurous fantasy field theme, sunny meadows by the sea, solo wooden flute melody over acoustic guitar, light strings, glockenspiel accents, soft snare and shaker, 112 BPM, major key, hopeful and carefree, steady loop-friendly structure without a big ending, instrumental, no vocals
-Exclude: vocals, electronic, synth, heavy drums, rock
+Create an instrumental track, about 3 minutes long, with no vocals. A bright adventurous fantasy field theme for sunny meadows by the sea: a solo wooden flute melody over acoustic guitar, light strings, glockenspiel accents, and a soft snare with a shaker. Around 112 BPM, major key, hopeful and carefree. Keep a steady structure that can loop, with a short intro and no big ending. No electronic sounds, synths, heavy drums or rock instruments.
 ```
 
 #### M-03 `title`（標題、登入畫面，之後才用）
 
 ```text
-Style: majestic yet gentle fantasy main theme, full orchestra, french horn melody, soaring strings, harp arpeggios, soft wordless choir pad, timpani swells, 80 BPM, nostalgic and grand, instrumental
-Exclude: vocals with lyrics, electronic, synth, rock
+Create an instrumental track, about 2 minutes long. A majestic yet gentle fantasy main theme: full orchestra, a french horn melody, soaring strings, harp arpeggios, a soft wordless choir, and timpani swells. Around 80 BPM, nostalgic and grand. No lyrics, no electronic sounds or synths.
 ```
 
 #### M-04 `character_select`（選角、創角，之後才用）
 
 ```text
-Style: calm fantasy menu music, solo piano and harp, soft warm strings, music box accents, 70 BPM, gentle and nostalgic, loop-friendly, instrumental, no vocals
-Exclude: vocals, drums, electronic, synth
+Create an instrumental track, about 2 minutes long, with no vocals. Calm fantasy menu music: solo piano and harp, soft warm strings, and music box accents. Around 70 BPM, gentle and nostalgic, easy to loop. No drums, no electronic sounds or synths.
 ```
 
 ### 2.6 第一版要的聲音
